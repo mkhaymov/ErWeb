@@ -1,0 +1,82 @@
+[
+  {
+    "url": "images/Oil_001.jpg",
+    "title": "My City",
+    "year": "2022",
+    "medium": "Oil on Canvas",
+    "dimensions": "30\" x 24\"",
+    "keywords": "painting, cityscape, urban, people, street, cars, clowds"
+  },
+  {
+    "url": "images/Oil_002.jpg",
+    "title": "Intersection",
+    "year": "2024",
+    "medium": "Oil on Canvas",
+    "dimensions": "24\" x 20\"",
+    "keywords": "painting, cityscape, urban, people, street, cars, clowds"
+  },
+  {
+    "url": "images/Oil_003.jpg",
+    "title": "The Fog",
+    "year": "2023",
+    "medium": "Oil on Canvas",
+    "dimensions": "20\" x 20\"",
+    "keywords": "painting, cityscape, urban, people, street, cars, clowds"
+  },
+  {
+    "url": "images/Watercolor_001.jpg",
+    "title": "Winter III",
+    "year": "2009",
+    "medium": "Watercolor",
+    "dimensions": "22\" x 26\"",
+    "keywords": "snow, cityscape, urban, people, street, cars"
+  },
+  {
+    "url": "images/Watercolor_002.jpg",
+    "title": "Winter V",
+    "year": "2009",
+    "medium": "Watercolor",
+    "dimensions": "22\" x 24\"",
+    "keywords": "snow, cityscape, urban, people, street, cars"
+  },
+  {
+    "url": "images/Watercolor_003.jpg",
+    "title": "Winter X",
+    "year": "2009",
+    "medium": "Watercolor",
+    "dimensions": "22\" x 30\"",
+    "keywords": "snow, cityscape, urban, street, people"
+  },
+  {
+    "url": "images/Watercolor_004.jpg",
+    "title": "Urban VIII",
+    "year": "2009",
+    "medium": "Watercolor",
+    "dimensions": "22\" x 30\"",
+    "keywords": "snow, cityscape, urban, street"
+  },
+  {
+    "url": "images/Watercolor_004.jpg",
+    "title": "Urban VIII",
+    "year": "2009",
+    "medium": "Watercolor",
+    "dimensions": "22\" x 30\"",
+    "keywords": "snow, cityscape, urban, street"
+  },
+  {
+    "url": "images/print_001.jpg",
+    "title": "Vernissage III",
+    "year": "2011",
+    "medium": "etching",
+    "dimensions": "24\" x 32\"",
+    "keywords": "people, print"
+  },
+  {
+    "url": "images/print_002.jpg",
+    "title": "Boats",
+    "year": "2005",
+    "medium": "collagraph",
+    "dimensions": "12\" x 12\"",
+    "keywords": "boat, marine, nature, outdoors, print"
+  }
+]

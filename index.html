@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elena Roginsky Arts</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --panel-color: #121212;
+            --text-color: #e0e0e0;
+            --accent-color: #007bff;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background-color: var(--panel-color);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo-img {
+            height: 40px;
+            width: 40px;
+            object-fit: cover;
+            border-radius: 4px;
+            background-color: #333;
+        }
+        .brand-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+        }
+        nav {
+            display: flex;
+            gap: 15px;
+        }
+        .nav-link {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+            font-size: 16px;
+            padding: 5px 10px;
+            transition: color 0.2s;
+        }
+        .nav-link:hover { color: var(--accent-color); }
+        
+        main {
+            flex: 1;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .content-section { display: none; }
+        .content-section.active { display: block; }
+        
+        h1 { text-align: center; margin-bottom: 30px; color: #fff; }
+        
+        /* Galleries Grid */
+        .galleries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        .gallery-card {
+            background-color: var(--panel-color);
+            border-radius: 8px;
+            overflow: hidden;
+            text-decoration: none;
+            text-align: center;
+            color: inherit;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+        .gallery-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+        .card-img-wrapper {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            background: var(--background-color);
+        }
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .card-info { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+        .card-info h3 { margin: 0 0 10px 0; color: #fff; }
+        .card-info p { margin: 0; color: #aaa; font-size: 14px; line-height: 1.4; }
+        
+        /* Search Box at the Bottom */
+        .search-container {
+            background-color: var(--panel-color);
+            padding: 40px 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 100px;
+            border: 1px solid #333;
+        }
+        .search-container h2 { margin-top: 0; color: #fff; }
+        .search-form {
+            display: flex;
+            max-width: 600px;
+            margin: 20px auto 0 auto;
+            gap: 10px;
+        }
+        .search-input {
+            flex: 1;
+            padding: 12px 20px;
+            border-radius: 4px;
+            border: 1px solid #444;
+            background-color: #1a1a1a;
+            color: #fff;
+            font-size: 16px;
+        }
+        .search-input:focus { border-color: var(--accent-color); outline: none; }
+        .search-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .search-btn:hover { background-color: #0056b3; }
+        
+        /* Static Content Boxes */
+        .info-box {
+            background-color: var(--panel-color);
+            padding: 30px;
+            border-radius: 8px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="logo.jpeg" alt="Logo" class="logo-img" onerror="this.style.display='none';">
+            <span class="brand-name">Elena Roginsky Arts</span>
+        </div>
+        <nav>
+            <button class="nav-link" onclick="showSection('home-section')">Home</button>
+            <button class="nav-link" onclick="scrollToSearch()">Search</button>
+            <button class="nav-link" onclick="showSection('about-section')">About</button>
+            <button class="nav-link" onclick="showSection('contact-section')">Contact</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Home Section -->
+        <div id="home-section" class="content-section active">
+            <!-- <h1>Collections</h1> -->
+            <div class="galleries-grid" id="galleriesGrid">
+                <!-- Loaded dynamically -->
+            </div>
+            
+            <!-- Search moved to the bottom -->
+            <div class="search-container" id="searchContainer">
+                <!-- <h2>Search Catalog</h2> -->
+                <!-- <p>Query individual artworks instantly across all archives by keywords, medium, or title.</p> -->
+                <form class="search-form" onsubmit="handleSearch(event)">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Type keywords (e.g., canvas, sunrise, forest)...">
+                    <button type="submit" class="search-btn">Search Images</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <div id="about-section" class="content-section">
+            <h1>About</h1>
+            <div class="info-box">
+                <p>I am using different media for my artwork - oil on canvas, watercolour, pastel and original print. Currently my favorite theme is cityscapes. I life-paint them on the streets of downtown Toronto and sometimes complete work in my studio. Hunting for an object in city jungle is an exciting and fascinating process for me. The goal is to get feeling of resonance with the environment, with the pulse of the city. I can’t and don’t want to work with photographs. I have to be inside. I have to see how rapidly everything in the city (people, cars, clouds and light) moves, changes, disappears. I reflect this quickness in my works by sketchy appearance, incompleteness of my canvases.<br>
+                Elena Roginsky</p>
+				<p>Elena Roginsky captures a moment in time through a process of observation and introspection. Her works are emotional and painterly, and rooted in the historical tradition of painting. They are created on location as has been done throughout the history of painting. Roginsky loads blank canvases and paints into her van and goes for a drive. When she feels inspired, she pulls over at the side of the road, places a blank canvas on the steering wheel, her easel, and begins to paint. Elements like the weather and the time of day lie heavily in her paintings. Spontaneity and nervousness seem to spill from the surface of each painting. The only time related obstacle to the completion of each canvas is when the police want her to move her vehicle or threaten Elena with a parking ticket. There is no returning to the studio with photographs to adjust or change the final painting. They flow in the moment in which they are painted, a thought in the process of becoming, a simple conscious effort to capture a moment in time. When I asked the artist about her preferred time of day and weather for painting Roginsky stated that “I like rain, snow because they make softness of contours and make air visible. I like summer as well but I don't like cloudless sky. It is as hard to explain why as explain why not every gentleman prefers blonds.” Her favourite locations for painting are busy city streets. Born in Russia, Elena grew up in Moscow and loves the big city feeling. She believes that her childhood experiences are the inspiration for her subject matter. She left Russia to escape during "perestroika" in 1991 and moved to Jerusalem, Israel. She and her family then immigrated to Toronto, Canada in 1996. Roginsky says “Visual art unlike literature and music doesn’t possess a time dimension. A picture is a frozen instant. But I think it’s possible to express the idea of the time through artistic ways. For me the function of time in visual art is taken up by space.” In our contemporary visual art experience these art works have no pretence of being slick or trendy. Roginsky gives us an intimate experience of time and moment, and a gentle reminder of painting and its traditional place in art history.<br>
+                Tracey Capes, 2012 (Principal of Tracey Capes Fine Art, Tracey provides professional visual art acquisition assistance for departments of government, corporate and business clients, public institutions and private collections.)</p>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div id="contact-section" class="content-section">
+            <h1>Contact</h1>
+            <div class="info-box">
+                <p><strong>Email:</strong> eroginsky@yahoo.com</p>
+                <!-- <p><strong>Phone:</strong> <a href="tel:+14161234567" style="color: var(--accent-color);">+1 (416) 123-4567</a></p>  -->
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Load galleries from galleries.json
+        async function loadHub() {
+            try {
+                const response = await fetch('galleries.json');
+                const galleries = await response.json();
+                const grid = document.getElementById('galleriesGrid');
+                grid.innerHTML = '';
+                
+                galleries.forEach(g => {
+                    const card = document.createElement('a');
+                    card.className = 'gallery-card';
+                    card.href = `gallery.html?search=${encodeURIComponent(g.searchCriteria)}`;
+                    card.innerHTML = `
+                        <div class="card-img-wrapper">
+                            <img src="${g.coverUrl}" alt="${g.title}" class="card-img">
+                        </div>
+                        <div class="card-info">
+                            <h3>${g.title}</h3>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+            } catch(e) {
+                console.error("Error loading galleries configuration", e);
+            }
+        }
+
+        function showSection(sectionId) {
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            if(sectionId === 'home-section') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function scrollToSearch() {
+            showSection('home-section');
+            setTimeout(() => {
+                document.getElementById('searchContainer').scrollIntoView({ behavior: 'smooth' });
+                document.getElementById('searchInput').focus();
+            }, 100);
+        }
+
+        function handleSearch(e) {
+            e.preventDefault();
+            const query = document.getElementById('searchInput').value.trim();
+            if(query) {
+                window.location.href = `gallery.html?search=${encodeURIComponent(query)}`;
+            }
+        }
+
+        window.onload = loadHub;
+    </script>
+</body>
+</html>
