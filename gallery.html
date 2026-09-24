@@ -317,23 +317,38 @@
             .metadata-panel p {
                 font-size: 12px;
             }
-			
-			/* 6. Restructure single-view layout elements to protect text layout bounds */
+
+            /* Restructure the single view container into a regular vertically scrolling pane */
             .single-view-pane {
+                display: none; /* Keeps hidden until triggered by JS */
+                position: fixed !important;
+                top: 0;
+                left: 0;
+                width: 100% !important;
                 height: 100% !important;
-                display: flex !important;
-                flex-direction: column !important;
+                overflow-y: auto !important; /* Forces scrollbars to appear naturally if elements stretch */
+                background: #050505;
+                z-index: 2000;
             }
-            
-            .single-view-pane .image-stage {
-                height: calc(100% - 90px) !important; /* Forces stage to shrink, reserving 90px for text at bottom */
-                flex: none !important;
+          
+            /* Let the image container adjust dynamically without breaking its internal canvas */
+            .image-stage {
+                height: 70vh !important; /* Reserve 70% of screen height for the art image */
+                width: 100% !important;
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
-            
-            .single-view-pane .metadata-panel {
-                height: 90px !important; /* Locks metadata panel size on mobile viewports */
-                padding: 8px 10px !important;
-                overflow-y: auto; /* Fallback if text strings run abnormally long */
+          
+            /* Position the text directly underneath the image naturally in the layout stack */
+            .metadata-panel {
+                position: relative !important;
+                width: 100% !important;
+                height: auto !important; /* Adapts dynamically to wrap text size */
+                padding: 20px 15px !important;
+                background: #050505;
+                box-sizing: border-box;
             }
         }
 
