@@ -317,6 +317,24 @@
             .metadata-panel p {
                 font-size: 12px;
             }
+			
+			/* 6. Restructure single-view layout elements to protect text layout bounds */
+            .single-view-pane {
+                height: 100% !important;
+                display: flex !important;
+                flex-direction: column !important;
+            }
+            
+            .single-view-pane .image-stage {
+                height: calc(100% - 90px) !important; /* Forces stage to shrink, reserving 90px for text at bottom */
+                flex: none !important;
+            }
+            
+            .single-view-pane .metadata-panel {
+                height: 90px !important; /* Locks metadata panel size on mobile viewports */
+                padding: 8px 10px !important;
+                overflow-y: auto; /* Fallback if text strings run abnormally long */
+            }
         }
 
     </style>
