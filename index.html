@@ -159,6 +159,95 @@
             border-radius: 8px;
             line-height: 1.6;
         }
+		
+        /* --- FOR MOBILE PHONES --- */
+        @media (max-width: 768px) {
+            /* 1. Stack header elements vertically to prevent text overlap */
+            header {
+                flex-direction: column;
+                gap: 12px;
+                padding: 12px 10px;
+                text-align: center;
+            }
+
+            .logo-container {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .brand-name {
+                font-size: 18px; /* Slightly downsized to keep it on one clean line */
+            }
+
+            /* 2. Style links as a neat button bar with better tap targets */
+            nav {
+                width: 100%;
+                justify-content: space-around;
+                border-top: 1px solid #222;
+                padding-top: 8px;
+                gap: 5px;
+            }
+
+            .nav-link {
+                font-size: 14px;
+                padding: 6px 8px;
+                background-color: #1a1a1a;
+                border-radius: 4px;
+                flex: 1; /* Spreads navigation evenly across the phone screen width */
+                text-align: center;
+            }
+
+            /* 3. Re-claim screen space by dropping wide margins */
+            main {
+                padding: 20px 12px;
+            }
+
+            /* 4. Adjust the gallery archives to a tight, beautiful 2-column view */
+            .galleries-grid {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+                gap: 15px;
+                margin-bottom: 30px;
+            }
+
+            .card-img-wrapper {
+                height: 130px; /* Scaled proportionally for thumb viewports */
+            }
+
+            .card-info {
+                padding: 12px 8px;
+            }
+
+            .card-info h3 {
+                font-size: 14px;
+                margin: 0;
+            }
+
+            /* 5. Transform search container elements into stacked cards */
+            .search-container {
+                margin-top: 50px;
+                padding: 25px 15px;
+            }
+
+            .search-form {
+                flex-direction: column; /* Stack input field and button vertically */
+                width: 100%;
+                gap: 10px;
+            }
+
+            .search-input, .search-btn {
+                width: 100%;
+                font-size: 15px;
+                padding: 12px;
+            }
+            
+            /* 6. Improve typography reading flow for the About panel text */
+            .info-box {
+                padding: 15px;
+                font-size: 14px;
+                line-height: 1.5;
+            }
+        }
+		
     </style>
 </head>
 <body>
