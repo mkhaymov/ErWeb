@@ -140,12 +140,14 @@
             top: 0;
             left: 0;
             background: #050505;
+			overflow-y: auto; /* Allows scrolling if metadata is very long */
         }
 
         .image-stage {
             flex: 1;
             width: 100%;
-            height: 100%; /* Force full viewport calculation */
+			min-height: 50vh; /* Ensures the image area scales down on mobile to make room for text */
+            /* height: 100%; *//* Force full viewport calculation */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -473,7 +475,11 @@
             document.getElementById('metaYear').innerText = item.year || 'N/A';
             document.getElementById('metaMedium').innerText = item.medium || 'N/A';
             document.getElementById('metaDimensions').innerText = item.dimensions || '';
-            document.getElementById('metaKeywords').innerText = item.keywords ? `Keywords: ${item.keywords}` : '';
+            // Add an IF safety check so it won't crash when the element is missing or commented out:
+            const metaKeywords = document.getElementById('metaKeywords');
+            if (metaKeywords) {
+                metaKeywords.innerText = item.keywords ? `Keywords: ${item.keywords}` : '';
+            }
         }
 
         function navigate(direction) {
