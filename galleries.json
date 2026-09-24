@@ -1,6 +1,6 @@
 [
   {
-    "title": "Paintings",
+    "title": "Oil Paintings",
     "coverUrl": "images/Oil_001.jpg",
     "searchCriteria": "canvas"
   }
@@ -13,7 +13,7 @@
 ,
   {
     "title": "Original Prints",
-    "coverUrl": "images/print_001.jpg",
+    "coverUrl": "images/Print_001.jpg",
     "searchCriteria": "print"
   }
 ,

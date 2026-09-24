@@ -8,22 +8,6 @@
     "keywords": "painting, cityscape, urban, people, street, cars, clowds"
   },
   {
-    "url": "images/Print_001.jpg",
-    "title": "Vernissage III",
-    "year": "2011",
-    "medium": "etching",
-    "dimensions": "24\" x 32\"",
-    "keywords": "people, print"
-  },
-  {
-    "url": "images/Print_002.jpg",
-    "title": "Boats",
-    "year": "2005",
-    "medium": "collagraph",
-    "dimensions": "12\" x 12\"",
-    "keywords": "boat, marine, nature, outdoors, print"
-  },
-  {
     "url": "images/Oil_002.jpg",
     "title": "Intersection",
     "year": "2024",
@@ -80,11 +64,19 @@
     "keywords": "snow, cityscape, urban, street"
   },
   {
-    "url": "images/Watercolor_004.jpg",
-    "title": "Urban VIII",
-    "year": "2009",
-    "medium": "Test",
-    "dimensions": "22\" x 30\"",
-    "keywords": "snow, cityscape, urban, street, print"
+    "url": "images/Print_001.jpg",
+    "title": "Vernissage III",
+    "year": "2011",
+    "medium": "etching",
+    "dimensions": "24\" x 32\"",
+    "keywords": "people, print"
+  },
+  {
+    "url": "images/Print_002.jpg",
+    "title": "Boats",
+    "year": "2005",
+    "medium": "collagraph",
+    "dimensions": "12\" x 12\"",
+    "keywords": "boat, marine, nature, outdoors, print"
   }
 ]
