@@ -233,6 +233,90 @@
         /* View Mode Active Hooks */
         .workspace-container.show-single .grid-view-pane { display: none; }
         .workspace-container.show-single .single-view-pane { display: flex; }
+		
+		        /* --- NEW CODE ADDITION FOR MOBILE SCREEN DEPLOYMENTS --- */
+        @media (max-width: 768px) {
+            /* 1. Stack the header layout into standard vertical lines */
+            header {
+                flex-direction: column;
+                gap: 12px;
+                padding: 12px 10px;
+                text-align: center;
+            }
+
+            .logo-container {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .brand-name {
+                font-size: 16px; /* Prevents title formatting wrapping anomalies */
+            }
+
+            /* 2. Format interactive navigation headers evenly across mobile viewports */
+            .header-actions {
+                width: 100%;
+                justify-content: space-between;
+                gap: 6px;
+            }
+
+            .header-actions .btn {
+                flex: 1; /* Grants explicit equal widths to header navigation options */
+                padding: 8px 4px;
+                font-size: 11px; /* Downsizes text gracefully to fit compact screens */
+                text-align: center;
+                white-space: nowrap;
+            }
+
+            /* 3. Reconfigure the masonry preview grid into a fluid 2-column gallery grid */
+            .grid-view-pane {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 12px;
+                padding: 12px;
+            }
+
+            .preview-card {
+                border-radius: 4px;
+            }
+
+            .preview-img-frame {
+                height: 150px; /* Reduces excessive scaling bounds for smaller viewports */
+            }
+
+            .preview-info {
+                padding: 10px 8px;
+            }
+
+            .preview-info h4 {
+                font-size: 13px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis; /* Gracefully shortens overflow text strings */
+            }
+
+            .preview-info p {
+                font-size: 11px;
+            }
+
+            /* 4. Hide desktop arrow overlays to prevent touch interference */
+            .nav-arrow {
+                display: none !important; /* Rely entirely on your native touch-swipe listener rules */
+            }
+
+            /* 5. Optimize metadata panels at the foot of single-view layouts */
+            .metadata-panel {
+                padding: 12px 10px;
+            }
+
+            .metadata-panel h2 {
+                font-size: 15px;
+            }
+
+            .metadata-panel p {
+                font-size: 12px;
+            }
+        }
+
     </style>
 </head>
 <body oncontextmenu="return false;">
