@@ -507,7 +507,7 @@
             document.getElementById('metaTitle').innerText = item.title || 'Untitled';
             document.getElementById('metaYear').innerText = item.year || 'N/A';
             document.getElementById('metaMedium').innerText = item.medium || 'N/A';
-            document.getElementById('metaTechnic').innerText = '('item.technic')' || '';
+            document.getElementById('metaTechnic').innerText = item.technic || '';
             document.getElementById('metaDimensions').innerText = item.dimensions || '';
             // Add an IF safety check so it won't crash when the element is missing or commented out:
             const metaKeywords = document.getElementById('metaKeywords');
