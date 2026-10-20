@@ -389,7 +389,7 @@
 
             <div class="metadata-panel" id="metadata">
                 <h2 id="metaTitle">Artwork Details</h2>
-                <p><span id="metaMedium"></span> &bull; <span id="metaDimensions"></span> &bull; <span id="metaYear"></span></p>
+                <p><span id="metaMedium"></span><span id="metaTechnic"></span> &bull; <span id="metaDimensions"></span> &bull; <span id="metaYear"></span></p>
                 <!-- <div class="keywords" id="metaKeywords"></div> -->
             </div>
         </div>
@@ -507,6 +507,7 @@
             document.getElementById('metaTitle').innerText = item.title || 'Untitled';
             document.getElementById('metaYear').innerText = item.year || 'N/A';
             document.getElementById('metaMedium').innerText = item.medium || 'N/A';
+            document.getElementById('metaTechnic').innerText = '('item.technic')' || '';
             document.getElementById('metaDimensions').innerText = item.dimensions || '';
             // Add an IF safety check so it won't crash when the element is missing or commented out:
             const metaKeywords = document.getElementById('metaKeywords');
