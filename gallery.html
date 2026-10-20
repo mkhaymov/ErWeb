@@ -508,7 +508,9 @@
             document.getElementById('metaYear').innerText = item.year || 'N/A';
             document.getElementById('metaDimensions').innerText = item.dimensions || '';
             document.getElementById('metaMedium').innerText = item.medium || 'N/A';
-            document.getElementById('metaTechnic').innerText = item.technic || '';
+			document.getElementById('metaTechnic').innerText = item.technic ? `(${item.technic})` : '';
+
+			// document.getElementById('metaTechnic').innerText = item.technic || '';
             
             // document.getElementById('metaTitle').innerText = item.title || 'Untitled';
             // document.getElementById('metaYear').innerText = item.year || 'N/A';
