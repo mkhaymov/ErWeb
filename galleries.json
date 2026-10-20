@@ -1,0 +1,25 @@
+[
+  {
+    "title": "Oil Paintings",
+    "coverUrl": "images/Oil_001.jpg",
+    "searchCriteria": "canvas"
+  }
+,
+  {
+    "title": "Watercolors",
+    "coverUrl": "images/Watercolor_001.jpg",
+    "searchCriteria": "watercolor"
+  }
+,
+  {
+    "title": "Original Prints",
+    "coverUrl": "images/Print_001.jpg",
+    "searchCriteria": "print"
+  }
+,
+  {
+    "title": "Cityscapes",
+    "coverUrl": "images/Oil_002.jpg",
+    "searchCriteria": "cityscape"
+  }
+]
