@@ -42,6 +42,13 @@
             z-index: 100;
         }
 
+        .brand-block {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 0;
+        }
+
         .logo-container {
             display: flex;
             align-items: center;
@@ -49,6 +56,7 @@
             text-decoration: none;
             color: inherit;
         }
+
         .logo-img {
             height: 35px;
             width: 35px;
@@ -56,10 +64,20 @@
             border-radius: 4px;
             background-color: #333;
         }
+
         .brand-name {
             font-size: 18px;
             font-weight: bold;
             color: #fff;
+        }
+
+        .gallery-title {
+            font-size: 14px;
+            color: #b7b7b7;
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .btn {
@@ -72,8 +90,15 @@
             font-size: 14px;
             transition: background 0.2s;
         }
-        .btn:hover { background-color: var(--accent-color); }
-        .header-actions { display: flex; gap: 10px; }
+
+        .btn:hover {
+            background-color: var(--accent-color);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+        }
 
         /* Multi-mode View Workspace */
         .workspace-container {
@@ -93,7 +118,7 @@
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 25px;
         }
-        
+
         .preview-card {
             background-color: var(--panel-color);
             border-radius: 6px;
@@ -104,7 +129,7 @@
             position: relative;
             border: 1px solid #222;
         }
-        
+
         .preview-img-frame {
             position: relative;
             width: 100%;
@@ -115,21 +140,31 @@
             justify-content: center;
             overflow: hidden;
         }
-        
+
         .preview-img {
             max-width: 100%;
             max-height: 100%;
-            object-fit: contain; /* Enforces strict uncropped aspect ratio */
+            object-fit: contain;
             pointer-events: none;
         }
-        
+
         .preview-info {
             padding: 15px;
             background-color: var(--panel-color);
             border-top: 1px solid #252525;
         }
-        .preview-info h4 { margin: 0 0 5px 0; color: #fff; font-size: 15px; }
-        .preview-info p { margin: 2px 0; color: #999; font-size: 13px; }
+
+        .preview-info h4 {
+            margin: 0 0 5px 0;
+            color: #fff;
+            font-size: 15px;
+        }
+
+        .preview-info p {
+            margin: 2px 0;
+            color: #999;
+            font-size: 13px;
+        }
 
         /* 2. Standalone Single View Mode */
         .single-view-pane {
@@ -141,25 +176,24 @@
             top: 0;
             left: 0;
             background: #050505;
-			overflow-y: auto; /* Allows scrolling if metadata is very long */
+            overflow-y: auto;
         }
 
         .image-stage {
             flex: 1;
             width: 100%;
-			min-height: 50vh; /* Ensures the image area scales down on mobile to make room for text */
-            /* height: 100%; *//* Force full viewport calculation */
+            min-height: 50vh;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             overflow: hidden;
-            padding: 20px; /* Prevents image from hitting header/footer edges */
+            padding: 20px;
         }
 
         .image-wrapper {
             position: relative;
-            display: flex; /* Changed from inline-block to flex */
+            display: flex;
             align-items: center;
             justify-content: center;
             width: 100%;
@@ -170,19 +204,20 @@
             transition: transform 0.1s ease-out;
             z-index: 2;
         }
-        .image-wrapper:active { cursor: grabbing; }
-        
+
+        .image-wrapper:active {
+            cursor: grabbing;
+        }
+
         .image-wrapper img {
             max-width: 100%;
             max-height: 100%;
-            width: auto;  /* Forces accurate aspect ratio preservation */
-            height: auto; /* Forces accurate aspect ratio preservation */
+            width: auto;
+            height: auto;
             object-fit: contain;
             display: block;
             pointer-events: none;
         }
-
-
 
         /* Anti-Copy Protection Security Shields */
         .security-shield {
@@ -210,7 +245,11 @@
             border-radius: 4px;
             transition: background 0.2s;
         }
-        .nav-arrow:hover { background: rgba(0,0,0,0.9); }
+
+        .nav-arrow:hover {
+            background: rgba(0,0,0,0.9);
+        }
+
         #prevBtn { left: 20px; }
         #nextBtn { right: 20px; }
 
@@ -222,29 +261,59 @@
             text-align: center;
             z-index: 40;
         }
-        .metadata-panel h2 { margin: 0 0 5px 0; font-size: 18px; color: #fff; }
-        .metadata-panel p { margin: 4px 0; font-size: 14px; color: #aaa; }
-        .metadata-panel .keywords { font-style: italic; font-size: 12px; color: #777; margin-top: 6px; }
+
+        .metadata-panel h2 {
+            margin: 0 0 5px 0;
+            font-size: 18px;
+            color: #fff;
+        }
+
+        .metadata-panel p {
+            margin: 4px 0;
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        .metadata-panel .keywords {
+            font-style: italic;
+            font-size: 12px;
+            color: #777;
+            margin-top: 6px;
+        }
 
         /* Fullscreen Modifiers */
         body.fullscreen-mode header,
         body.fullscreen-mode .metadata-panel {
             display: none !important;
         }
-        body.fullscreen-mode .workspace-container { height: 100vh; }
+
+        body.fullscreen-mode .workspace-container {
+            height: 100vh;
+        }
 
         /* View Mode Active Hooks */
-        .workspace-container.show-single .grid-view-pane { display: none; }
-        .workspace-container.show-single .single-view-pane { display: flex; }
-		
-		        /* --- NEW CODE ADDITION FOR MOBILE SCREEN DEPLOYMENTS --- */
+        .workspace-container.show-single .grid-view-pane {
+            display: none;
+        }
+
+        .workspace-container.show-single .single-view-pane {
+            display: flex;
+        }
+
         @media (max-width: 768px) {
-            /* 1. Stack the header layout into standard vertical lines */
             header {
                 flex-direction: column;
                 gap: 12px;
                 padding: 12px 10px;
                 text-align: center;
+            }
+
+            .brand-block {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 6px;
             }
 
             .logo-container {
@@ -253,10 +322,13 @@
             }
 
             .brand-name {
-                font-size: 16px; /* Prevents title formatting wrapping anomalies */
+                font-size: 16px;
             }
 
-            /* 2. Format interactive navigation headers evenly across mobile viewports */
+            .gallery-title {
+                font-size: 12px;
+            }
+
             .header-actions {
                 width: 100%;
                 justify-content: space-between;
@@ -264,14 +336,13 @@
             }
 
             .header-actions .btn {
-                flex: 1; /* Grants explicit equal widths to header navigation options */
+                flex: 1;
                 padding: 8px 4px;
-                font-size: 11px; /* Downsizes text gracefully to fit compact screens */
+                font-size: 11px;
                 text-align: center;
                 white-space: nowrap;
             }
 
-            /* 3. Reconfigure the masonry preview grid into a fluid 2-column gallery grid */
             .grid-view-pane {
                 grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
                 gap: 12px;
@@ -283,7 +354,7 @@
             }
 
             .preview-img-frame {
-                height: 150px; /* Reduces excessive scaling bounds for smaller viewports */
+                height: 150px;
             }
 
             .preview-info {
@@ -294,19 +365,17 @@
                 font-size: 13px;
                 white-space: nowrap;
                 overflow: hidden;
-                text-overflow: ellipsis; /* Gracefully shortens overflow text strings */
+                text-overflow: ellipsis;
             }
 
             .preview-info p {
                 font-size: 11px;
             }
 
-            /* 4. Hide desktop arrow overlays to prevent touch interference */
             .nav-arrow {
-                display: none !important; /* Rely entirely on your native touch-swipe listener rules */
+                display: none !important;
             }
 
-            /* 5. Optimize metadata panels at the foot of single-view layouts */
             .metadata-panel {
                 padding: 12px 10px;
             }
@@ -319,50 +388,49 @@
                 font-size: 12px;
             }
 
-            /* Restructure the single view container into a regular vertically scrolling pane */
             .single-view-pane {
-                display: none; /* Keeps hidden until triggered by JS */
+                display: none;
                 position: fixed !important;
                 top: 0;
                 left: 0;
                 width: 100% !important;
                 height: 100% !important;
-                overflow-y: auto !important; /* Forces scrollbars to appear naturally if elements stretch */
+                overflow-y: auto !important;
                 background: #050505;
                 z-index: 2000;
             }
-          
-            /* Let the image container adjust dynamically without breaking its internal canvas */
+
             .image-stage {
-                height: 70vh !important; /* Reserve 70% of screen height for the art image */
+                height: 70vh !important;
                 width: 100% !important;
                 position: relative;
                 display: flex;
                 align-items: center;
                 justify-content: center;
             }
-          
-            /* Position the text directly underneath the image naturally in the layout stack */
+
             .metadata-panel {
                 position: relative !important;
                 width: 100% !important;
-                height: auto !important; /* Adapts dynamically to wrap text size */
+                height: auto !important;
                 padding: 20px 15px !important;
                 background: #050505;
                 box-sizing: border-box;
             }
         }
-
     </style>
 </head>
 <body oncontextmenu="return false;">
 
     <header id="appHeader">
-        <!-- Logo added to Catalog View Header -->
-        <a href="index.html" class="logo-container">
-            <img src="logo.jpeg" alt="Logo" class="logo-img" onerror="this.style.display='none';">
-            <span class="brand-name">Elena Roginsky Arts</span>
-        </a>
+        <div class="brand-block">
+            <a href="index.html" class="logo-container">
+                <img src="logo.jpeg" alt="Logo" class="logo-img" onerror="this.style.display='none';">
+                <span class="brand-name">Elena Roginsky Arts</span>
+            </a>
+            <span id="dynamic-gallery-title" class="gallery-title" aria-live="polite"></span>
+        </div>
+
         <div class="header-actions">
             <button class="btn" id="backToGridBtn" style="display:none;" onclick="exitToGrid()">📅 Gallery View</button>
             <button class="btn" id="fsBtn" style="display:none;" onclick="toggleFullScreen()">🖥️ Full Screen</button>
@@ -391,7 +459,6 @@
             <div class="metadata-panel" id="metadata">
                 <h2 id="metaTitle">Artwork Details</h2>
                 <p><span id="metaMedium"></span><span id="metaTechnic"></span> &bull; <span id="metaDimensions"></span> &bull; <span id="metaYear"></span></p>
-                <!-- <div class="keywords" id="metaKeywords"></div> -->
             </div>
         </div>
     </div>
@@ -417,11 +484,10 @@
         const imgWrapper = document.getElementById('imgWrapper');
         const galleryImg = document.getElementById('galleryImg');
         const stage = document.getElementById('stage');
-        
+
         const backToGridBtn = document.getElementById('backToGridBtn');
         const fsBtn = document.getElementById('fsBtn');
         const homeHubBtn = document.getElementById('homeHubBtn');
-
 
         // Extract search parameters from address string
         function getSearchQuery() {
@@ -433,9 +499,9 @@
             try {
                 const response = await fetch('images.json');
                 allImages = await response.json();
-                
+
                 const searchQuery = getSearchQuery();
-                
+
                 // Direct filtering on individual images based on keywords, title, medium
                 if(searchQuery) {
                     filteredImages = allImages.filter(img => {
@@ -459,9 +525,9 @@
             backToGridBtn.style.display = 'none';
             fsBtn.style.display = 'none';
             homeHubBtn.style.display = 'inline-block';
-            
+
             gridView.innerHTML = '';
-            
+
             if(filteredImages.length === 0) {
                 gridView.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding: 40px; color: #777;">No matching individual artworks found for your query.</div>`;
                 return;
@@ -504,23 +570,13 @@
             resetZoom();
             const item = filteredImages[currentIndex];
             galleryImg.src = item.url;
-            
+
             document.getElementById('metaTitle').innerText = item.title || 'Untitled';
             document.getElementById('metaYear').innerText = item.year || 'N/A';
             document.getElementById('metaDimensions').innerText = item.dimensions || '';
             document.getElementById('metaMedium').innerText = item.medium || 'N/A';
-			document.getElementById('metaTechnic').innerText = item.technic ? `(${item.technic})` : '';
+            document.getElementById('metaTechnic').innerText = item.technic ? `(${item.technic})` : '';
 
-			// document.getElementById('metaTechnic').innerText = item.technic || '';
-            
-            // document.getElementById('metaTitle').innerText = item.title || 'Untitled';
-            // document.getElementById('metaYear').innerText = item.year || 'N/A';
-			// document.getElementById('metaMedium').innerText = item.medium || 'N/A';
-            // document.getElementById('metaDimensions').innerText = item.dimensions || '';
-            // document.getElementById('metaTechnic').innerText = item.technic || '';
-			
-            // document.getElementById('metaMedium').innerText = item.technic || '';
-           // Add an IF safety check so it won't crash when the element is missing or commented out:
             const metaKeywords = document.getElementById('metaKeywords');
             if (metaKeywords) {
                 metaKeywords.innerText = item.keywords ? `Keywords: ${item.keywords}` : '';
@@ -560,11 +616,15 @@
             pointY = e.clientY - startY;
             updateTransform();
         });
-        window.addEventListener('mouseup', () => { isPanning = false; });
+
+        window.addEventListener('mouseup', () => {
+            isPanning = false;
+        });
 
         /* Mobile Touch Gestures Engine (Pinch to Zoom & Swipe) */
         stage.addEventListener('touchstart', (e) => {
             if(!workspace.classList.contains('show-single')) return;
+
             if (e.touches.length === 2) {
                 lastTouchDist = Math.hypot(
                     e.touches[0].clientX - e.touches[1].clientX,
@@ -573,6 +633,7 @@
             } else if (e.touches.length === 1) {
                 touchStartX = e.touches[0].clientX;
                 touchStartY = e.touches[0].clientY;
+
                 if(scale > 1) {
                     startX = e.touches[0].clientX - pointX;
                     startY = e.touches[0].clientY - pointY;
@@ -583,6 +644,7 @@
 
         stage.addEventListener('touchmove', (e) => {
             if(!workspace.classList.contains('show-single')) return;
+
             if (e.touches.length === 2 && scale >= 1) {
                 e.preventDefault();
                 const dist = Math.hypot(
@@ -603,12 +665,15 @@
 
         stage.addEventListener('touchend', (e) => {
             if(!workspace.classList.contains('show-single')) return;
+
             if (isPanning && e.touches.length === 0) {
                 isPanning = false;
             }
+
             if (scale === 1 && e.changedTouches.length === 1 && !isPanning) {
                 const diffX = e.changedTouches[0].clientX - touchStartX;
                 const diffY = e.changedTouches[0].clientY - touchStartY;
+
                 if (Math.abs(diffX) > 60 && Math.abs(diffY) < 40) {
                     navigate(diffX > 0 ? -1 : 1);
                 }
@@ -618,8 +683,11 @@
         function updateTransform() {
             imgWrapper.style.transform = `translate(${pointX}px, ${pointY}px) scale(${scale})`;
         }
+
         function resetZoom() {
-            scale = 1; pointX = 0; pointY = 0;
+            scale = 1;
+            pointX = 0;
+            pointY = 0;
             updateTransform();
         }
 
@@ -631,6 +699,7 @@
                 document.exitFullscreen();
             }
         }
+
         document.addEventListener('fullscreenchange', () => {
             if (document.fullscreenElement) {
                 document.body.classList.add('fullscreen-mode');
@@ -640,17 +709,14 @@
             }
         });
 
-		// Attaching click listener to wrapper to pierce through security-shield overlay safely
+        // Attaching click listener to wrapper to pierce through security-shield overlay safely
         document.getElementById('imgWrapper').addEventListener('click', function() {
-            // Calls your existing toggleFullScreen function when clicked
             if (typeof toggleFullScreen === "function") {
                 toggleFullScreen();
             } else {
-                // Fallback layout toggle if your function behaves differently
                 document.body.classList.toggle('fullscreen-mode');
             }
         });
-
 
         // Hotkey mappings
         window.addEventListener('keydown', (e) => {
@@ -660,28 +726,31 @@
             if (e.key === "Escape" && !document.fullscreenElement) exitToGrid();
         });
 
-        window.onload = initCatalog;
+        function updateGalleryTitle() {
+            const titleEl = document.getElementById('dynamic-gallery-title');
+            if (!titleEl) return;
 
-		// 1. Get the current gallery identifier from the URL parameters
-        const urlParams = new URLSearchParams(window.location.search);
-        const galleryId = urlParams.get('gallery'); // Adjust parameter key if your app uses 'id', 'name', etc.
+            const urlParams = new URLSearchParams(window.location.search);
+            const galleryId = urlParams.get('gallery');
 
-        // 2. Fetch the metadata configuration
-        fetch('galleries.json')
-            .then(response => response.json())
-            .then(galleries => {
-                // 3. Find the current active gallery object
-                const currentGallery = galleries.find(g => g.id === galleryId || g.slug === galleryId);
-                
-                if (currentGallery && currentGallery.title) {
-                    // 4. Inject the title right next to the brand name
-                    document.getElementById('dynamic-gallery-title').innerText = ` - ${currentGallery.title}`;
-                }
-            })
-            .catch(error => console.error('Error loading gallery title:', error));
+            if (!galleryId) {
+                titleEl.textContent = '';
+                return;
+            }
 
-		document.getElementById('gallery-header-title').innerText = `gallery-title-test`;
-		
+            fetch('galleries.json')
+                .then(response => response.json())
+                .then(galleries => {
+                    const currentGallery = galleries.find(g => g.id === galleryId || g.slug === galleryId);
+                    titleEl.textContent = currentGallery && currentGallery.title ? `• ${currentGallery.title}` : '';
+                })
+                .catch(error => console.error('Error loading gallery title:', error));
+        }
+
+        window.onload = function() {
+            initCatalog();
+            updateGalleryTitle();
+        };
     </script>
 </body>
 </html>
