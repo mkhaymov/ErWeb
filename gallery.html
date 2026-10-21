@@ -648,7 +648,7 @@
                 // Fallback layout toggle if your function behaves differently
                 document.body.classList.toggle('fullscreen-mode');
             }
-});
+        });
 
 
         // Hotkey mappings
@@ -660,7 +660,25 @@
         });
 
         window.onload = initCatalog;
-		
+
+		// 1. Get the current gallery identifier from the URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const galleryId = urlParams.get('gallery'); // Adjust parameter key if your app uses 'id', 'name', etc.
+
+        // 2. Fetch the metadata configuration
+        fetch('galleries.json')
+            .then(response => response.json())
+            .then(galleries => {
+                // 3. Find the current active gallery object
+                const currentGallery = galleries.find(g => g.id === galleryId || g.slug === galleryId);
+                
+                if (currentGallery && currentGallery.title) {
+                    // 4. Inject the title right next to the brand name
+                    document.getElementById('dynamic-gallery-title').innerText = ` - ${currentGallery.title}`;
+                }
+            })
+            .catch(error => console.error('Error loading gallery title:', error));
+	
     </script>
 </body>
 </html>
