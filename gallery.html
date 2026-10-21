@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<header class="gallery-header">
-        <h1>Elena Roginsky ARTs <span id="dynamic-gallery-title"></span></h1>
+        <h1>Elena Roginsky ARTs <span id="dynamic-gallery-title-test"></span></h1>
     </header>
 
     <style>
@@ -681,7 +681,9 @@
                 }
             })
             .catch(error => console.error('Error loading gallery title:', error));
-	
+
+		document.getElementById('dynamic-gallery-title-test').innerText = ` test`;
+		
     </script>
 </body>
 </html>
