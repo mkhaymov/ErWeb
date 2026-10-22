@@ -726,14 +726,18 @@
             if (e.key === "Escape" && !document.fullscreenElement) exitToGrid();
         });
 
+        function titleCase(value) {
+            return value ? value.charAt(0).toUpperCase() + value.slice(1) : '';
+        }
+
         function updateGalleryTitle() {
             const titleEl = document.getElementById('dynamic-gallery-title');
             if (!titleEl) return;
 
-            const urlParams = new URLSearchParams(window.location.search);
-            const galleryId = urlParams.get('gallery');
+            const params = new URLSearchParams(window.location.search);
+            const searchQuery = params.get('search');
 
-            if (!galleryId) {
+            if (!searchQuery) {
                 titleEl.textContent = '';
                 return;
             }
@@ -741,10 +745,20 @@
             fetch('galleries.json')
                 .then(response => response.json())
                 .then(galleries => {
-                    const currentGallery = galleries.find(g => g.id === galleryId || g.slug === galleryId);
-                    titleEl.textContent = currentGallery && currentGallery.title ? `• ${currentGallery.title}` : '';
+                    const normalizedSearch = searchQuery.trim().toLowerCase();
+                    const currentGallery = galleries.find(g => {
+                        const criteria = (g.searchCriteria || '').trim().toLowerCase();
+                        return criteria === normalizedSearch;
+                    });
+
+                    titleEl.textContent = currentGallery && currentGallery.title
+                        ? `• ${currentGallery.title}`
+                        : `• ${titleCase(normalizedSearch)}`;
                 })
-                .catch(error => console.error('Error loading gallery title:', error));
+                .catch(error => {
+                    console.error('Error loading gallery title:', error);
+                    titleEl.textContent = `• ${titleCase(searchQuery.trim())}`;
+                })
         }
 
         window.onload = function() {
