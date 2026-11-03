@@ -1,0 +1,9 @@
+{
+  "brandName": "Elena Roginsky Arts",
+  "logoUrl": "logo.jpeg",
+  "galleriesUrl": "galleries.json",
+  "imagesUrl": "images.json",
+  "homePageUrl": "index.html",
+  "galleryPageUrl": "gallery.html",
+  "searchPlaceholder": "Type keywords (e.g., canvas, sunrise, forest)..."
+}
