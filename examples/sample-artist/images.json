@@ -14,5 +14,21 @@
     "medium": "Photograph",
     "dimensions": "",
     "keywords": "portrait, historical, sample"
+  },
+  {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Portrait_DANTE-DeGroux-87.jpg",
+    "title": "Dante portrait (sample image)",
+    "year": "",
+    "medium": "Portrait",
+    "dimensions": "",
+    "keywords": "portrait, drawing, sample, dante"
+  },
+  {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/a/a2/ALBERTO_BOTTILLO_AL_LAVORO_DURANTE_LA_REALIZZAZIONE_DI_UNA_LINOLEOGRAFIA.jpg",
+    "title": "Artist making a linocut (sample image)",
+    "year": "",
+    "medium": "Photograph",
+    "dimensions": "",
+    "keywords": "artist, printmaking, linocut, linoleum, sample"
   }
 ]
