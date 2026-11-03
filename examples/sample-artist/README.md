@@ -1,6 +1,6 @@
 # Sample artist data package
 
-This folder demonstrates the data files an artist can host for the shared ErWeb viewer. Its config and JSON files are sample data; the displayed sample images are fetched directly from Wikimedia Commons and are not hosted by this repository. Attribution/source notes are in [`images/README.md`](images/README.md).
+This package demonstrates the viewer's configuration and data format with a neutral, generic portfolio presentation. It is not a real artist's portfolio, and the sample images are third-party works or historical photographs loaded directly from Wikimedia Commons—not artwork by the sample artist. Sources and rights notes are in [`images/README.md`](images/README.md).
 
 ## Try it locally
 
@@ -18,6 +18,6 @@ python -m http.server 8000
 
 ## Use the sample as a template
 
-Copy this folder to a location you control, update `config.json` with your own brand and data URLs, and update the gallery and artwork JSON with your content. Replace the sample image URLs with URLs to images you host. For a separate domain, configure CORS to permit the viewer to fetch your config and JSON files.
+Copy this folder to a location you control, update `config.json` with your own brand and data URLs, and replace the example gallery and artwork entries with your own content and image URLs. For a separate domain, configure CORS to permit the viewer to fetch your config and JSON files.
 
 See the repository README for the full data schema and hosting guidance.

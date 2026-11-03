@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title id="title">Sample portfolio mark</title>
+  <rect width="128" height="128" rx="18" fill="#30343b"/>
+  <path d="M28 92 54 36h20l26 56H82l-6-15H52l-6 15H28Zm29-27h14l-7-17-7 17Z" fill="#f2eee8"/>
+  <circle cx="96" cy="32" r="8" fill="#c89f72"/>
+</svg>

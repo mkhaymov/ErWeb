@@ -1,9 +1,9 @@
 {
-  "brandName": "Elena Roginsky Arts (Sample Data)",
-  "logoUrl": "../../logo.jpeg",
+  "brandName": "Sample Artist Portfolio",
+  "logoUrl": "images/sample-logo.svg",
   "galleriesUrl": "galleries.json",
   "imagesUrl": "images.json",
   "homePageUrl": "../../index.html",
   "galleryPageUrl": "../../gallery.html",
-  "searchPlaceholder": "Search the sample artwork..."
+  "searchPlaceholder": "Search sample artworks..."
 }
