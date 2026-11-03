@@ -1,35 +1,18 @@
 [
   {
-    "url": "../../images/Oil_001.jpg",
-    "title": "My City",
-    "year": "2022",
-    "medium": "Oil on Canvas",
-    "dimensions": "30\" x 24\"",
-    "keywords": "painting, cityscape, urban, people, street, cars, clouds"
+    "url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Vincent_Van_Gogh_0023.jpg",
+    "title": "Portrait of Patience Escalier (sample image)",
+    "year": "1888",
+    "medium": "Drawing",
+    "dimensions": "",
+    "keywords": "portrait, drawing, sample"
   },
   {
-    "url": "../../images/Oil_002.jpg",
-    "title": "Intersection",
-    "year": "2024",
-    "medium": "Oil on Canvas",
-    "dimensions": "24\" x 20\"",
-    "keywords": "painting, cityscape, urban, people, street, cars, clouds"
-  },
-  {
-    "url": "../../images/Watercolor_001.jpg",
-    "title": "Winter III",
-    "year": "2009",
-    "medium": "Watercolor",
-    "dimensions": "22\" x 26\"",
-    "keywords": "snow, cityscape, urban, people, street, cars"
-  },
-  {
-    "url": "../../images/Print_001.jpg",
-    "title": "Vernissage III",
-    "year": "2011",
-    "medium": "etching",
-    "technic": "aquatint, à la poupée",
-    "dimensions": "24\" x 32\"",
-    "keywords": "people, print"
+    "url": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Serena_Lederer_in_her_apartment_with_Elisabeth_Lederer%27s_portrait.webp",
+    "title": "Portrait in Serena Lederer's apartment (sample image)",
+    "year": "Historical photograph",
+    "medium": "Photograph",
+    "dimensions": "",
+    "keywords": "portrait, historical, sample"
   }
 ]
