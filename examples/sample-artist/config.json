@@ -3,7 +3,5 @@
   "logoUrl": "images/sample-logo.svg",
   "galleriesUrl": "galleries.json",
   "imagesUrl": "images.json",
-  "homePageUrl": "../../index.html",
-  "galleryPageUrl": "../../gallery.html",
   "searchPlaceholder": "Search sample artworks..."
 }
