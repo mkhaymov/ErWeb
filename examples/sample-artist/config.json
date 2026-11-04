@@ -1,6 +1,6 @@
 {
   "brandName": "Brand Name (Artist Name)",
-  "logoUrl": "../../logo.jpeg",
+  "logoUrl": "images/0.jpg",
   "galleriesUrl": "galleries.json",
   "imagesUrl": "images.json",
   "searchPlaceholder": "Search the sample artwork..."
