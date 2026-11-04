@@ -1,18 +1,26 @@
 [
   {
-    "url": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Serena_Lederer_in_her_apartment_with_Elisabeth_Lederer%27s_portrait.webp",
-    "title": "Interior with Framed Artwork",
-    "year": "Historical photograph",
-    "medium": "Photograph",
-    "dimensions": "",
-    "keywords": "interior, portrait, framed artwork, collection, sample"
+    "url": "images/0.jpg",
+    "title": "Sample Artwork 1",
+    "medium": "Artwork",
+    "keywords": "sample, artwork, 1"
   },
   {
-    "url": "https://upload.wikimedia.org/wikipedia/commons/a/a2/ALBERTO_BOTTILLO_AL_LAVORO_DURANTE_LA_REALIZZAZIONE_DI_UNA_LINOLEOGRAFIA.jpg",
-    "title": "Printmaking in Progress",
-    "year": "",
-    "medium": "Photograph",
-    "dimensions": "",
-    "keywords": "artist, studio, printmaking, linocut, process, sample"
+    "url": "images/1.jpg",
+    "title": "Sample Artwork 2",
+    "medium": "Artwork",
+    "keywords": "sample, artwork, 2"
+  },
+  {
+    "url": "images/2.jpg",
+    "title": "Sample Artwork 3",
+    "medium": "Artwork",
+    "keywords": "sample, artwork, 3"
+  },
+  {
+    "url": "images/3.jpg",
+    "title": "Sample Artwork 4",
+    "medium": "Artwork",
+    "keywords": "sample, artwork, 4"
   }
 ]

@@ -1,12 +1,22 @@
 [
   {
-    "title": "Art in Context",
-    "coverUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Serena_Lederer_in_her_apartment_with_Elisabeth_Lederer%27s_portrait.webp",
-    "searchCriteria": "interior"
+    "title": "Sample Artwork 1",
+    "coverUrl": "images/0.jpg",
+    "searchCriteria": "1"
   },
   {
-    "title": "Printmaking Process",
-    "coverUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a2/ALBERTO_BOTTILLO_AL_LAVORO_DURANTE_LA_REALIZZAZIONE_DI_UNA_LINOLEOGRAFIA.jpg",
-    "searchCriteria": "printmaking"
+    "title": "Sample Artwork 2",
+    "coverUrl": "images/1.jpg",
+    "searchCriteria": "2"
+  },
+  {
+    "title": "Sample Artwork 3",
+    "coverUrl": "images/2.jpg",
+    "searchCriteria": "3"
+  },
+  {
+    "title": "Sample Artwork 4",
+    "coverUrl": "images/3.jpg",
+    "searchCriteria": "4"
   }
 ]
