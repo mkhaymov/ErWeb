@@ -1,22 +1,12 @@
 [
   {
-    "title": "Portrait Studies",
-    "coverUrl": "https://upload.wikimedia.org/wikipedia/commons/7/70/Vincent_Van_Gogh_0023.jpg",
-    "searchCriteria": "portrait"
-  },
-  {
-    "title": "Works on Paper",
-    "coverUrl": "https://upload.wikimedia.org/wikipedia/commons/7/70/Vincent_Van_Gogh_0023.jpg",
-    "searchCriteria": "drawing"
-  },
-  {
-    "title": "Printmaking",
-    "coverUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a2/ALBERTO_BOTTILLO_AL_LAVORO_DURANTE_LA_REALIZZAZIONE_DI_UNA_LINOLEOGRAFIA.jpg",
-    "searchCriteria": "printmaking"
-  },
-  {
     "title": "Art in Context",
     "coverUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Serena_Lederer_in_her_apartment_with_Elisabeth_Lederer%27s_portrait.webp",
     "searchCriteria": "interior"
+  },
+  {
+    "title": "Printmaking Process",
+    "coverUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a2/ALBERTO_BOTTILLO_AL_LAVORO_DURANTE_LA_REALIZZAZIONE_DI_UNA_LINOLEOGRAFIA.jpg",
+    "searchCriteria": "printmaking"
   }
 ]
