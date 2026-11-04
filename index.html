@@ -1,437 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elena Roginsky Arts</title>
-    <style>
-        :root {
-            --bg-color: #121212;
-            --panel-color: #121212;
-            --text-color: #e0e0e0;
-            --accent-color: #007bff;
-        }
-        * { box-sizing: border-box; }
-        body {
-            margin: 0;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        header {
-            background-color: var(--panel-color);
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #333;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: inherit;
-            text-decoration: none;
-        }
-        .logo-img {
-            height: 40px;
-            width: 40px;
-            object-fit: cover;
-            border-radius: 4px;
-            background-color: #333;
-        }
-        .brand-name {
-            font-size: 20px;
-            font-weight: bold;
-            color: #fff;
-        }
-        nav {
-            display: flex;
-            gap: 15px;
-        }
-        .nav-link {
-            background: none;
-            border: none;
-            color: var(--text-color);
-            cursor: pointer;
-            font-size: 16px;
-            padding: 5px 10px;
-            transition: color 0.2s;
-        }
-        .nav-link:hover { color: var(--accent-color); }
-        
-        main {
-            flex: 1;
-            max-width: 1200px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-        
-        .content-section { display: none; }
-        .content-section.active { display: block; }
-        
-        h1 { text-align: center; margin-bottom: 30px; color: #fff; }
-        
-        .galleries-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 50px;
-        }
-        .gallery-card {
-            background-color: var(--panel-color);
-            border-radius: 8px;
-            overflow: hidden;
-            text-decoration: none;
-            text-align: center;
-            color: inherit;
-            transition: transform 0.2s, box-shadow 0.2s;
-            display: flex;
-            flex-direction: column;
-        }
-        .gallery-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-        }
-        .card-img-wrapper {
-            width: 100%;
-            height: 200px;
-            overflow: hidden;
-            background: var(--background-color);
-        }
-        .card-img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-        .card-info { padding: 20px; flex: 1; display: flex; flex-direction: column; }
-        .card-info h3 { margin: 0 0 10px 0; color: #fff; }
-        .card-info p { margin: 0; color: #aaa; font-size: 14px; line-height: 1.4; }
-        
-        .search-container {
-            background-color: var(--panel-color);
-            padding: 40px 20px;
-            border-radius: 8px;
-            text-align: center;
-            margin-top: 100px;
-            border: 1px solid #333;
-        }
-        .search-container h2 { margin-top: 0; color: #fff; }
-        .search-form {
-            display: flex;
-            max-width: 600px;
-            margin: 20px auto 0 auto;
-            gap: 10px;
-        }
-        .search-input {
-            flex: 1;
-            padding: 12px 20px;
-            border-radius: 4px;
-            border: 1px solid #444;
-            background-color: #1a1a1a;
-            color: #fff;
-            font-size: 16px;
-        }
-        .search-input:focus { border-color: var(--accent-color); outline: none; }
-        .search-btn {
-            background-color: var(--accent-color);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-        }
-        .search-btn:hover { background-color: #0056b3; }
-        
-        .info-box {
-            background-color: var(--panel-color);
-            padding: 30px;
-            border-radius: 8px;
-            line-height: 1.6;
-        }
-        
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 12px;
-                padding: 12px 10px;
-                text-align: center;
-            }
-
-            .logo-container {
-                flex-direction: column;
-                gap: 5px;
-            }
-
-            .brand-name {
-                font-size: 18px;
-            }
-
-            nav {
-                width: 100%;
-                justify-content: space-around;
-                border-top: 1px solid #222;
-                padding-top: 8px;
-                gap: 5px;
-            }
-
-            .nav-link {
-                font-size: 14px;
-                padding: 6px 8px;
-                background-color: #1a1a1a;
-                border-radius: 4px;
-                flex: 1;
-                text-align: center;
-            }
-
-            main {
-                padding: 20px 12px;
-            }
-
-            .galleries-grid {
-                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-                gap: 15px;
-                margin-bottom: 30px;
-            }
-
-            .card-img-wrapper {
-                height: 130px;
-            }
-
-            .card-info {
-                padding: 12px 8px;
-            }
-
-            .card-info h3 {
-                font-size: 14px;
-                margin: 0;
-            }
-
-            .search-container {
-                margin-top: 50px;
-                padding: 25px 15px;
-            }
-
-            .search-form {
-                flex-direction: column;
-                width: 100%;
-                gap: 10px;
-            }
-
-            .search-input, .search-btn {
-                width: 100%;
-                font-size: 15px;
-                padding: 12px;
-            }
-            
-            .info-box {
-                padding: 15px;
-                font-size: 14px;
-                line-height: 1.5;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artist Portfolio</title>
+  <style>
+    :root { color-scheme: dark; --bg:#121212; --panel:#1e1e1e; --text:#e0e0e0; --accent:#007bff; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; display:flex; flex-direction:column; background:var(--bg); color:var(--text); font-family:system-ui,-apple-system,"Segoe UI",sans-serif; }
+    header { position:sticky; top:0; z-index:2; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 20px; background:var(--panel); border-bottom:1px solid #333; }
+    .logo-container { display:flex; align-items:center; gap:10px; color:inherit; text-decoration:none; }
+    .logo-img { width:40px; height:40px; object-fit:cover; border-radius:4px; background:#333; }
+    .brand-name { font-weight:700; font-size:20px; color:#fff; }
+    nav { display:flex; gap:10px; }
+    button { cursor:pointer; }
+    .nav-link { border:0; background:none; color:inherit; font-size:15px; padding:7px 10px; }
+    main { flex:1; width:min(1200px,100%); margin:auto; padding:36px 20px; }
+    .content-section { display:none; }
+    .content-section.active { display:block; }
+    h1 { text-align:center; color:#fff; }
+    .galleries-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:24px; }
+    .gallery-card { overflow:hidden; display:flex; flex-direction:column; text-align:center; color:inherit; text-decoration:none; background:var(--panel); border-radius:8px; transition:transform .2s; }
+    .gallery-card:hover { transform:translateY(-4px); }
+    .card-img-wrapper { height:200px; background:#151515; }
+    .card-img { width:100%; height:100%; object-fit:contain; }
+    .card-info { padding:16px; color:#fff; }
+    .search-container,.info-box { margin-top:48px; padding:28px; background:var(--panel); border:1px solid #333; border-radius:8px; }
+    .search-form { display:flex; gap:10px; max-width:600px; margin:auto; }
+    .search-input { min-width:0; flex:1; padding:12px; color:#fff; background:#1a1a1a; border:1px solid #444; border-radius:4px; font-size:16px; }
+    .search-btn { padding:12px 20px; color:#fff; border:0; border-radius:4px; background:var(--accent); font-weight:700; }
+    @media(max-width:700px) { header { flex-direction:column; } nav { width:100%; justify-content:space-around; } main { padding:20px 12px; } .galleries-grid { grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:14px; } .card-img-wrapper { height:130px; } .search-form { flex-direction:column; } .search-input,.search-btn { width:100%; } }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="logo-container">
-            <img src="logo.jpeg" alt="Logo" class="logo-img" onerror="this.style.display='none';">
-            <span class="brand-name">Elena Roginsky Arts</span>
-        </div>
-        <nav>
-            <button class="nav-link" onclick="showSection('home-section')">Home</button>
-            <button class="nav-link" onclick="scrollToSearch()">Search</button>
-            <button class="nav-link" onclick="showSection('about-section')">About</button>
-            <button class="nav-link" onclick="showSection('contact-section')">Contact</button>
-        </nav>
-    </header>
+  <header>
+    <a class="logo-container" href="index.html"><img class="logo-img" src="logo.jpeg" alt="Logo" onerror="this.style.display='none'"><span class="brand-name">Artist Portfolio</span></a>
+    <nav>
+      <button class="nav-link" onclick="showSection('home-section')">Home</button>
+      <button class="nav-link" onclick="scrollToSearch()">Search</button>
+      <button class="nav-link" onclick="showSection('about-section')">About</button>
+      <button class="nav-link" onclick="showSection('contact-section')">Contact</button>
+    </nav>
+  </header>
+  <main>
+    <section id="home-section" class="content-section active">
+      <div id="galleriesGrid" class="galleries-grid"></div>
+      <div class="search-container" id="searchContainer">
+        <form class="search-form" onsubmit="handleSearch(event)">
+          <input id="searchInput" class="search-input" type="search" placeholder="Search artwork...">
+          <button class="search-btn" type="submit">Search</button>
+        </form>
+      </div>
+    </section>
+    <section id="about-section" class="content-section"><h1>About</h1><div class="info-box"><p>Artist information can be added here.</p></div></section>
+    <section id="contact-section" class="content-section"><h1>Contact</h1><div class="info-box"><p>Contact information can be added here.</p></div></section>
+  </main>
+  <script>
+    const DEFAULT_CONFIG = { brandName:'Artist Portfolio', logoUrl:'logo.jpeg', galleriesUrl:'galleries.json', imagesUrl:'images.json', searchPlaceholder:'Search artwork...' };
+    let siteConfig;
 
-    <main>
-        <div id="home-section" class="content-section active">
-            <div class="galleries-grid" id="galleriesGrid"></div>
-            <div class="search-container" id="searchContainer">
-                <form class="search-form" onsubmit="handleSearch(event)">
-                    <input type="text" id="searchInput" class="search-input" placeholder="Type keywords (e.g., canvas, sunrise, forest)...">
-                    <button type="submit" class="search-btn">Search Images</button>
-                </form>
-            </div>
-        </div>
-
-        <div id="about-section" class="content-section">
-            <h1>About</h1>
-            <div class="info-box">
-                <p>I am using different media for my artwork - oil on canvas, watercolour, pastel and original print. Currently my favorite theme is cityscapes. I life-paint them on the streets of downtown, and my practice is rooted in direct observation and emotional response.</p>
-                <p>Elena Roginsky captures a moment in time through a process of observation and introspection. Her works are emotional and painterly, and rooted in the historical tradition of painting.</p>
-            </div>
-        </div>
-
-        <div id="contact-section" class="content-section">
-            <h1>Contact</h1>
-            <div class="info-box">
-                <p><strong>Email:</strong> eroginsky@yahoo.com</p>
-            </div>
-        </div>
-    </main>
-
-    <script>
-        let siteConfig = null;
-
-        function getConfigUrl() {
-            const params = new URLSearchParams(window.location.search);
-            const requested = params.get('config');
-            return requested ? new URL(requested, window.location.href).href : new URL('config.json', window.location.href).href;
-        }
-
-        async function loadSiteConfig() {
-            const configUrl = getConfigUrl();
-            const response = await fetch(configUrl);
-            if (!response.ok) {
-                throw new Error(`Could not load configuration from ${configUrl}`);
-            }
-
-            const data = await response.json();
-            const base = new URL(configUrl, window.location.href);
-
-            const resolveUrl = (value, fallback) => {
-                if (!value) {
-                    if (!fallback) return '';
-                    return new URL(fallback, base).href;
-                }
-                return new URL(String(value), base).href;
-            };
-
-            return {
-                configUrl,
-                brandName: data.brandName || data.brand_name || 'Elena Roginsky Arts',
-                logoUrl: resolveUrl(data.logoUrl || data.logo_url, 'logo.jpeg'),
-                galleriesUrl: resolveUrl(data.galleriesUrl || data.galleries_url, 'galleries.json'),
-                imagesUrl: resolveUrl(data.imagesUrl || data.images_url, 'images.json'),
-                homePageUrl: resolveUrl(data.homePageUrl || data.home_page_url, 'index.html'),
-                galleryPageUrl: resolveUrl(data.galleryPageUrl || data.gallery_page_url, 'gallery.html'),
-                searchPlaceholder: data.searchPlaceholder || data.search_placeholder || 'Type keywords (e.g., canvas, sunrise, forest)...'
-            };
-        }
-
-        function makePageUrl(pageUrl, extraParams = {}) {
-            const targetUrl = new URL(pageUrl, window.location.href);
-            const params = new URLSearchParams(targetUrl.search);
-            params.set('config', siteConfig.configUrl);
-
-            Object.entries(extraParams).forEach(([key, value]) => {
-                if (value !== null && value !== undefined && value !== '') {
-                    params.set(key, String(value));
-                }
-            });
-
-            targetUrl.search = params.toString();
-            return targetUrl.href;
-        }
-
-        function applyBranding() {
-            if (!siteConfig) return;
-
-            document.title = siteConfig.brandName;
-            const brandName = document.querySelector('.brand-name');
-            if (brandName) brandName.textContent = siteConfig.brandName;
-
-            const logo = document.querySelector('.logo-img');
-            if (logo) logo.src = siteConfig.logoUrl;
-
-            const logoLink = document.querySelector('.logo-container');
-            if (logoLink) logoLink.href = makePageUrl(siteConfig.homePageUrl);
-
-            const searchInput = document.getElementById('searchInput');
-            if (searchInput) {
-                searchInput.placeholder = siteConfig.searchPlaceholder;
-            }
-        }
-
-        async function loadHub() {
-            try {
-                siteConfig = await loadSiteConfig();
-                applyBranding();
-
-                const response = await fetch(siteConfig.galleriesUrl);
-                if (!response.ok) {
-                    throw new Error(`Could not load galleries from ${siteConfig.galleriesUrl}`);
-                }
-
-                const galleries = await response.json();
-                const grid = document.getElementById('galleriesGrid');
-                grid.innerHTML = '';
-
-                galleries.forEach(gallery => {
-                    const card = document.createElement('a');
-                    card.className = 'gallery-card';
-                    card.href = makePageUrl(siteConfig.galleryPageUrl, {
-                        search: gallery.searchCriteria || ''
-                    });
-
-                    const imageWrapper = document.createElement('div');
-                    imageWrapper.className = 'card-img-wrapper';
-
-                    const image = document.createElement('img');
-                    image.className = 'card-img';
-                    image.alt = gallery.title || '';
-                    image.src = new URL(gallery.coverUrl || '', siteConfig.galleriesUrl).href;
-
-                    const info = document.createElement('div');
-                    info.className = 'card-info';
-
-                    const title = document.createElement('h3');
-                    title.textContent = gallery.title || '';
-
-                    imageWrapper.appendChild(image);
-                    info.appendChild(title);
-                    card.appendChild(imageWrapper);
-                    card.appendChild(info);
-                    grid.appendChild(card);
-                });
-            } catch (error) {
-                console.error('Error loading site configuration or galleries:', error);
-                const grid = document.getElementById('galleriesGrid');
-                if (grid) {
-                    grid.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #999;">Unable to load galleries. Check the configuration URL and the artist data.</div>';
-                }
-            }
-        }
-
-        function showSection(sectionId) {
-            document.querySelectorAll('.content-section').forEach(section => section.classList.remove('active'));
-            const section = document.getElementById(sectionId);
-            if (section) section.classList.add('active');
-            if (sectionId === 'home-section') {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-        }
-
-        function scrollToSearch() {
-            showSection('home-section');
-            setTimeout(() => {
-                const searchContainer = document.getElementById('searchContainer');
-                const searchInput = document.getElementById('searchInput');
-                if (searchContainer) searchContainer.scrollIntoView({ behavior: 'smooth' });
-                if (searchInput) searchInput.focus();
-            }, 100);
-        }
-
-        function handleSearch(event) {
-            event.preventDefault();
-            const query = document.getElementById('searchInput').value.trim();
-            if (!query || !siteConfig) return;
-            window.location.href = makePageUrl(siteConfig.galleryPageUrl, { search: query });
-        }
-
-        window.onload = loadHub;
-    </script>
+    function getConfigUrl() {
+      const requested = new URLSearchParams(location.search).get('config');
+      return requested ? new URL(requested, location.href).href : new URL('config.json', location.href).href;
+    }
+    function resolveDataUrl(value, fallback, configUrl) {
+      return new URL(value || fallback, configUrl).href;
+    }
+    // Viewer pages belong to this app, not to the artist's data package.
+    function makeViewerUrl(pageName, params = {}) {
+      const url = new URL(pageName, location.href);
+      url.search = '';
+      url.searchParams.set('config', siteConfig.configUrl);
+      Object.entries(params).forEach(([key, value]) => {
+        if (value !== undefined && value !== null && value !== '') url.searchParams.set(key, String(value));
+      });
+      return url.href;
+    }
+    async function loadSiteConfig() {
+      const configUrl = getConfigUrl();
+      const response = await fetch(configUrl);
+      if (!response.ok) throw new Error(`Could not load configuration from ${configUrl}`);
+      const data = await response.json();
+      return {
+        configUrl,
+        brandName: data.brandName || data.brand_name || DEFAULT_CONFIG.brandName,
+        logoUrl: resolveDataUrl(data.logoUrl || data.logo_url, DEFAULT_CONFIG.logoUrl, configUrl),
+        galleriesUrl: resolveDataUrl(data.galleriesUrl || data.galleries_url, DEFAULT_CONFIG.galleriesUrl, configUrl),
+        imagesUrl: resolveDataUrl(data.imagesUrl || data.images_url, DEFAULT_CONFIG.imagesUrl, configUrl),
+        searchPlaceholder: data.searchPlaceholder || data.search_placeholder || DEFAULT_CONFIG.searchPlaceholder
+      };
+    }
+    async function loadHub() {
+      const grid = document.getElementById('galleriesGrid');
+      try {
+        siteConfig = await loadSiteConfig();
+        document.title = siteConfig.brandName;
+        document.querySelector('.brand-name').textContent = siteConfig.brandName;
+        document.querySelector('.logo-img').src = siteConfig.logoUrl;
+        document.getElementById('searchInput').placeholder = siteConfig.searchPlaceholder;
+        const response = await fetch(siteConfig.galleriesUrl);
+        if (!response.ok) throw new Error(`Could not load galleries from ${siteConfig.galleriesUrl}`);
+        const galleries = await response.json();
+        galleries.forEach(gallery => {
+          const card = document.createElement('a');
+          card.className = 'gallery-card';
+          card.href = makeViewerUrl('gallery.html', { search: gallery.searchCriteria || '' });
+          const wrapper = document.createElement('div');
+          wrapper.className = 'card-img-wrapper';
+          const image = document.createElement('img');
+          image.className = 'card-img';
+          image.alt = gallery.title || '';
+          image.src = new URL(gallery.coverUrl || '', siteConfig.galleriesUrl).href;
+          const info = document.createElement('div');
+          info.className = 'card-info';
+          const title = document.createElement('h3');
+          title.textContent = gallery.title || '';
+          wrapper.appendChild(image); info.appendChild(title); card.append(wrapper, info); grid.appendChild(card);
+        });
+      } catch (error) {
+        console.error('Error loading configuration or galleries:', error);
+        grid.textContent = 'Unable to load galleries. Check the configuration URL and artist data.';
+      }
+    }
+    function showSection(id) {
+      document.querySelectorAll('.content-section').forEach(section => section.classList.toggle('active', section.id === id));
+      if (id === 'home-section') scrollTo({ top:0, behavior:'smooth' });
+    }
+    function scrollToSearch() {
+      showSection('home-section');
+      setTimeout(() => { document.getElementById('searchContainer').scrollIntoView({ behavior:'smooth' }); document.getElementById('searchInput').focus(); }, 100);
+    }
+    function handleSearch(event) {
+      event.preventDefault();
+      const query = document.getElementById('searchInput').value.trim();
+      if (query && siteConfig) location.href = makeViewerUrl('gallery.html', { search:query });
+    }
+    window.addEventListener('load', loadHub);
+  </script>
 </body>
 </html>

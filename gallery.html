@@ -1,822 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elena Roginsky Arts</title>
-
-    <style>
-        :root {
-            --bg-color: #121212;
-            --panel-color: #1e1e1e;
-            --text-color: #e0e0e0;
-            --accent-color: #007bff;
-        }
-
-        * {
-            box-sizing: border-box;
-            user-select: none;
-            -webkit-user-select: none;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        header {
-            background-color: var(--panel-color);
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #333;
-            z-index: 100;
-        }
-
-        .brand-block {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            min-width: 0;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .logo-img {
-            height: 35px;
-            width: 35px;
-            object-fit: cover;
-            border-radius: 4px;
-            background-color: #333;
-        }
-
-        .brand-name,
-        .gallery-title {
-            font-size: 18px;
-            font-weight: bold;
-            color: #fff;
-            font-family: inherit;
-        }
-
-        .btn {
-            background-color: #333;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: background 0.2s;
-        }
-
-        .btn:hover {
-            background-color: var(--accent-color);
-        }
-
-        .header-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .workspace-container {
-            flex: 1;
-            position: relative;
-            overflow: hidden;
-            background: #0a0a0a;
-        }
-
-        .grid-view-pane {
-            width: 100%;
-            height: 100%;
-            overflow-y: auto;
-            padding: 30px;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        .preview-card {
-            background-color: var(--panel-color);
-            border-radius: 6px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            cursor: pointer;
-            position: relative;
-            border: 1px solid #222;
-        }
-
-        .preview-img-frame {
-            position: relative;
-            width: 100%;
-            height: 240px;
-            background-color: #151515;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .preview-img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            pointer-events: none;
-        }
-
-        .preview-info {
-            padding: 15px;
-            background-color: var(--panel-color);
-            border-top: 1px solid #252525;
-        }
-
-        .preview-info h4 {
-            margin: 0 0 5px 0;
-            color: #fff;
-            font-size: 15px;
-        }
-
-        .preview-info p {
-            margin: 2px 0;
-            color: #999;
-            font-size: 13px;
-        }
-
-        .single-view-pane {
-            display: none;
-            width: 100%;
-            height: 100%;
-            flex-direction: column;
-            position: absolute;
-            top: 0;
-            left: 0;
-            background: #050505;
-            overflow-y: auto;
-        }
-
-        .image-stage {
-            flex: 1;
-            width: 100%;
-            min-height: 50vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            padding: 20px;
-        }
-
-        .image-wrapper {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            height: 100%;
-            max-width: 100%;
-            max-height: 100%;
-            cursor: pointer;
-            transition: transform 0.1s ease-out;
-            z-index: 2;
-        }
-
-        .image-wrapper:active {
-            cursor: grabbing;
-        }
-
-        .image-wrapper img {
-            max-width: 100%;
-            max-height: 100%;
-            width: auto;
-            height: auto;
-            object-fit: contain;
-            display: block;
-            pointer-events: none;
-        }
-
-        .security-shield {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
-            z-index: 10;
-        }
-
-        .nav-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0,0,0,0.6);
-            color: white;
-            border: none;
-            font-size: 24px;
-            padding: 15px 20px;
-            cursor: pointer;
-            z-index: 50;
-            border-radius: 4px;
-            transition: background 0.2s;
-        }
-
-        .nav-arrow:hover {
-            background: rgba(0,0,0,0.9);
-        }
-
-        #prevBtn { left: 20px; }
-        #nextBtn { right: 20px; }
-
-        .metadata-panel {
-            background-color: var(--panel-color);
-            width: 100%;
-            padding: 15px 20px;
-            border-top: 1px solid #333;
-            text-align: center;
-            z-index: 40;
-        }
-
-        .metadata-panel h2 {
-            margin: 0 0 5px 0;
-            font-size: 18px;
-            color: #fff;
-        }
-
-        .metadata-panel p {
-            margin: 4px 0;
-            font-size: 14px;
-            color: #aaa;
-        }
-
-        .metadata-panel .keywords {
-            font-style: italic;
-            font-size: 12px;
-            color: #777;
-            margin-top: 6px;
-        }
-
-        body.fullscreen-mode header,
-        body.fullscreen-mode .metadata-panel {
-            display: none !important;
-        }
-
-        body.fullscreen-mode .workspace-container {
-            height: 100vh;
-        }
-
-        .workspace-container.show-single .grid-view-pane {
-            display: none;
-        }
-
-        .workspace-container.show-single .single-view-pane {
-            display: flex;
-        }
-
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 12px;
-                padding: 12px 10px;
-                text-align: center;
-            }
-
-            .brand-block {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-wrap: wrap;
-                gap: 6px;
-            }
-
-            .logo-container {
-                flex-direction: column;
-                gap: 5px;
-            }
-
-            .brand-name {
-                font-size: 16px;
-            }
-
-            .gallery-title {
-                font-size: 12px;
-            }
-
-            .header-actions {
-                width: 100%;
-                justify-content: space-between;
-                gap: 6px;
-            }
-
-            .header-actions .btn {
-                flex: 1;
-                padding: 8px 4px;
-                font-size: 11px;
-                text-align: center;
-                white-space: nowrap;
-            }
-
-            .grid-view-pane {
-                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-                gap: 12px;
-                padding: 12px;
-            }
-
-            .preview-card {
-                border-radius: 4px;
-            }
-
-            .preview-img-frame {
-                height: 150px;
-            }
-
-            .preview-info {
-                padding: 10px 8px;
-            }
-
-            .preview-info h4 {
-                font-size: 13px;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-
-            .preview-info p {
-                font-size: 11px;
-            }
-
-            .nav-arrow {
-                display: none !important;
-            }
-
-            .metadata-panel {
-                padding: 12px 10px;
-            }
-
-            .metadata-panel h2 {
-                font-size: 15px;
-            }
-
-            .metadata-panel p {
-                font-size: 12px;
-            }
-
-            .single-view-pane {
-                display: none;
-                position: fixed !important;
-                top: 0;
-                left: 0;
-                width: 100% !important;
-                height: 100% !important;
-                overflow-y: auto !important;
-                background: #050505;
-                z-index: 2000;
-            }
-
-            .image-stage {
-                height: 70vh !important;
-                width: 100% !important;
-                position: relative;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            .metadata-panel {
-                position: relative !important;
-                width: 100% !important;
-                height: auto !important;
-                padding: 20px 15px !important;
-                background: #050505;
-                box-sizing: border-box;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery</title>
+  <style>
+    :root { color-scheme:dark; --bg:#121212; --panel:#1e1e1e; --text:#e0e0e0; --accent:#007bff; }
+    * { box-sizing:border-box; user-select:none; -webkit-user-select:none; }
+    body { margin:0; height:100vh; display:flex; flex-direction:column; overflow:hidden; background:var(--bg); color:var(--text); font-family:system-ui,-apple-system,"Segoe UI",sans-serif; }
+    header { z-index:2; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 20px; background:var(--panel); border-bottom:1px solid #333; }
+    .logo-container { display:flex; align-items:center; gap:10px; color:inherit; text-decoration:none; }
+    .logo-img { width:35px; height:35px; object-fit:cover; border-radius:4px; background:#333; }
+    .brand-name,.gallery-title { color:#fff; font-weight:700; }
+    .header-actions { display:flex; gap:8px; }
+    .btn { padding:8px 14px; color:white; background:#333; border:0; border-radius:4px; text-decoration:none; cursor:pointer; }
+    .btn:hover { background:var(--accent); }
+    .workspace { flex:1; min-height:0; position:relative; overflow:hidden; background:#0a0a0a; }
+    .grid-view { width:100%; height:100%; overflow:auto; padding:24px; display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:20px; }
+    .preview-card { overflow:hidden; display:flex; flex-direction:column; background:var(--panel); border:1px solid #222; border-radius:6px; cursor:pointer; }
+    .preview-frame { height:220px; display:flex; align-items:center; justify-content:center; background:#151515; }
+    .preview-frame img { max-width:100%; max-height:100%; object-fit:contain; pointer-events:none; }
+    .preview-info { padding:12px; border-top:1px solid #252525; }
+    .preview-info h3 { margin:0 0 5px; color:#fff; font-size:15px; }
+    .preview-info p { margin:0; color:#999; font-size:13px; }
+    .single-view { display:none; position:absolute; inset:0; flex-direction:column; background:#050505; }
+    .workspace.show-single .grid-view { display:none; }
+    .workspace.show-single .single-view { display:flex; }
+    .image-stage { flex:1; min-height:0; position:relative; display:flex; align-items:center; justify-content:center; overflow:hidden; padding:20px; touch-action:none; }
+    .image-wrapper { width:100%; height:100%; display:flex; align-items:center; justify-content:center; transition:transform .1s ease-out; }
+    .image-wrapper img { max-width:100%; max-height:100%; object-fit:contain; pointer-events:none; }
+    .nav-arrow { position:absolute; z-index:1; top:50%; transform:translateY(-50%); padding:12px 16px; color:white; background:#0009; border:0; border-radius:4px; font-size:24px; cursor:pointer; }
+    #prevBtn { left:16px; } #nextBtn { right:16px; }
+    .metadata { padding:14px 20px; text-align:center; background:var(--panel); border-top:1px solid #333; }
+    .metadata h2 { margin:0 0 5px; color:white; font-size:18px; }
+    .metadata p { margin:4px 0; color:#aaa; font-size:14px; }
+    @media(max-width:700px) { header { flex-direction:column; } .grid-view { grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); padding:12px; gap:12px; } .preview-frame { height:150px; } .nav-arrow { display:none; } .single-view { position:fixed; z-index:5; } .image-stage { height:70vh; flex:none; } .metadata { padding:18px 12px; } }
+  </style>
 </head>
-<body oncontextmenu="return false;">
-    <header id="appHeader">
-        <div class="brand-block">
-            <a href="index.html" class="logo-container">
-                <img src="logo.jpeg" alt="Logo" class="logo-img" onerror="this.style.display='none';">
-                <span class="brand-name">Elena Roginsky Arts</span>
-            </a>
-            <span id="dynamic-gallery-title" class="gallery-title" aria-live="polite"></span>
-        </div>
-
-        <div class="header-actions">
-            <button class="btn" id="backToGridBtn" style="display:none;" onclick="exitToGrid()">📅 Gallery View</button>
-            <button class="btn" id="fsBtn" style="display:none;" onclick="toggleFullScreen()">🖥️ Full Screen</button>
-            <a href="index.html" class="btn" id="homeHubBtn" style="text-decoration: none;">🏠 Main Page</a>
-        </div>
-    </header>
-
-    <div class="workspace-container" id="workspace">
-        <div class="grid-view-pane" id="gridView"></div>
-
-        <div class="single-view-pane" id="singleView">
-            <button class="nav-arrow" id="prevBtn" onclick="navigate(-1)">&#10094;</button>
-            <button class="nav-arrow" id="nextBtn" onclick="navigate(1)">&#10095;</button>
-
-            <div class="image-stage" id="stage">
-                <div class="image-wrapper" id="imgWrapper">
-                    <div class="security-shield"></div>
-                    <img id="galleryImg" src="" alt="Gallery Viewport" draggable="false">
-                </div>
-            </div>
-
-            <div class="metadata-panel" id="metadata">
-                <h2 id="metaTitle">Artwork Details</h2>
-                <p><span id="metaMedium"></span><span id="metaTechnic"></span> &bull; <span id="metaDimensions"></span> &bull; <span id="metaYear"></span></p>
-            </div>
-        </div>
+<body>
+  <header>
+    <a id="logoLink" class="logo-container" href="index.html"><img id="logoImg" class="logo-img" src="logo.jpeg" alt="Logo" onerror="this.style.display='none'"><span class="brand-name">Artist Portfolio</span></a>
+    <span id="galleryTitle" class="gallery-title"></span>
+    <div class="header-actions">
+      <button id="backToGridBtn" class="btn" style="display:none" onclick="exitToGrid()">Gallery View</button>
+      <button id="fsBtn" class="btn" style="display:none" onclick="toggleFullScreen()">Full Screen</button>
+      <a id="homeHubBtn" class="btn" href="index.html">Main Page</a>
     </div>
+  </header>
+  <div id="workspace" class="workspace">
+    <div id="gridView" class="grid-view"></div>
+    <section id="singleView" class="single-view">
+      <button id="prevBtn" class="nav-arrow" onclick="navigate(-1)">‹</button>
+      <button id="nextBtn" class="nav-arrow" onclick="navigate(1)">›</button>
+      <div id="stage" class="image-stage"><div id="imgWrapper" class="image-wrapper"><img id="galleryImg" alt="Artwork"></div></div>
+      <div class="metadata"><h2 id="metaTitle"></h2><p id="metaDetails"></p><p id="metaKeywords"></p></div>
+    </section>
+  </div>
+  <script>
+    let siteConfig, allImages = [], filteredImages = [], currentIndex = 0;
+    let scale = 1, pointX = 0, pointY = 0, startX = 0, startY = 0, isPanning = false, touchStartX = 0, touchStartY = 0, lastTouchDist = 0;
+    const workspace = document.getElementById('workspace');
+    const gridView = document.getElementById('gridView');
+    const imgWrapper = document.getElementById('imgWrapper');
+    const galleryImg = document.getElementById('galleryImg');
+    const stage = document.getElementById('stage');
+    const backToGridBtn = document.getElementById('backToGridBtn');
+    const fsBtn = document.getElementById('fsBtn');
+    const homeHubBtn = document.getElementById('homeHubBtn');
 
-    <script>
-        let siteConfig = null;
-        let allImages = [];
-        let filteredImages = [];
-        let currentIndex = 0;
-        let scale = 1;
-        let pointX = 0, pointY = 0;
-        let startX = 0, startY = 0;
-        let isPanning = false;
-        let lastTouchDist = 0;
-        let touchStartX = 0, touchStartY = 0;
-
-        const workspace = document.getElementById('workspace');
-        const gridView = document.getElementById('gridView');
-        const singleView = document.getElementById('singleView');
-        const imgWrapper = document.getElementById('imgWrapper');
-        const galleryImg = document.getElementById('galleryImg');
-        const stage = document.getElementById('stage');
-        const backToGridBtn = document.getElementById('backToGridBtn');
-        const fsBtn = document.getElementById('fsBtn');
-        const homeHubBtn = document.getElementById('homeHubBtn');
-
-        function getConfigUrl() {
-            const params = new URLSearchParams(window.location.search);
-            const requested = params.get('config');
-            return requested ? new URL(requested, window.location.href).href : new URL('config.json', window.location.href).href;
-        }
-
-        async function loadSiteConfig() {
-            const configUrl = getConfigUrl();
-            const response = await fetch(configUrl);
-            if (!response.ok) {
-                throw new Error(`Could not load configuration from ${configUrl}`);
-            }
-
-            const data = await response.json();
-            const base = new URL(configUrl, window.location.href);
-
-            const resolveUrl = (value, fallback) => {
-                if (!value) {
-                    if (!fallback) return '';
-                    return new URL(fallback, base).href;
-                }
-                return new URL(String(value), base).href;
-            };
-
-            return {
-                configUrl,
-                brandName: data.brandName || data.brand_name || 'Elena Roginsky Arts',
-                logoUrl: resolveUrl(data.logoUrl || data.logo_url, 'logo.jpeg'),
-                galleriesUrl: resolveUrl(data.galleriesUrl || data.galleries_url, 'galleries.json'),
-                imagesUrl: resolveUrl(data.imagesUrl || data.images_url, 'images.json'),
-                homePageUrl: resolveUrl(data.homePageUrl || data.home_page_url, 'index.html'),
-                galleryPageUrl: resolveUrl(data.galleryPageUrl || data.gallery_page_url, 'gallery.html')
-            };
-        }
-
-        function makePageUrl(pageUrl, extraParams = {}) {
-            const targetUrl = new URL(pageUrl, window.location.href);
-            const params = new URLSearchParams(targetUrl.search);
-            params.set('config', siteConfig.configUrl);
-
-            Object.entries(extraParams).forEach(([key, value]) => {
-                if (value !== null && value !== undefined && value !== '') {
-                    params.set(key, String(value));
-                }
-            });
-
-            targetUrl.search = params.toString();
-            return targetUrl.href;
-        }
-
-        function applyBranding() {
-            if (!siteConfig) return;
-
-            document.title = siteConfig.brandName;
-            const brandName = document.querySelector('.brand-name');
-            if (brandName) brandName.textContent = siteConfig.brandName;
-
-            const logo = document.querySelector('.logo-img');
-            if (logo) logo.src = siteConfig.logoUrl;
-
-            const logoLink = document.querySelector('.logo-container');
-            if (logoLink) logoLink.href = makePageUrl(siteConfig.homePageUrl);
-
-            if (homeHubBtn) {
-                homeHubBtn.href = makePageUrl(siteConfig.homePageUrl);
-            }
-        }
-
-        function getSearchQuery() {
-            const params = new URLSearchParams(window.location.search);
-            return params.get('search') ? params.get('search').toLowerCase().trim() : '';
-        }
-
-        async function initCatalog() {
-            try {
-                const response = await fetch(siteConfig.imagesUrl);
-                if (!response.ok) {
-                    throw new Error(`Could not load images from ${siteConfig.imagesUrl}`);
-                }
-
-                allImages = await response.json();
-                allImages.forEach(image => {
-                    if (image.url) {
-                        image.url = new URL(image.url, siteConfig.imagesUrl).href;
-                    }
-                });
-
-                const searchQuery = getSearchQuery();
-                filteredImages = searchQuery
-                    ? allImages.filter(img => {
-                        return (img.title && img.title.toLowerCase().includes(searchQuery)) ||
-                               (img.keywords && img.keywords.toLowerCase().includes(searchQuery)) ||
-                               (img.medium && img.medium.toLowerCase().includes(searchQuery));
-                    })
-                    : [...allImages];
-
-                renderGrid();
-            } catch (error) {
-                console.error(error);
-                gridView.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding: 40px;">Error loading artwork data from the configured source.</div>';
-            }
-        }
-
-        function renderGrid() {
-            workspace.classList.remove('show-single');
-            backToGridBtn.style.display = 'none';
-            fsBtn.style.display = 'none';
-            homeHubBtn.style.display = 'inline-block';
-            gridView.innerHTML = '';
-
-            if (filteredImages.length === 0) {
-                gridView.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding: 40px; color: #777;">No matching individual artworks found for your query.</div>';
-                return;
-            }
-
-            filteredImages.forEach((img, idx) => {
-                const card = document.createElement('div');
-                card.className = 'preview-card';
-                card.onclick = () => launchSingleView(idx);
-                card.innerHTML = `
-                    <div class="preview-img-frame">
-                        <div class="security-shield"></div>
-                        <img src="${img.url}" alt="${img.title || 'Artwork'}" class="preview-img" draggable="false">
-                    </div>
-                    <div class="preview-info">
-                        <h4>${img.title || 'Untitled'}</h4>
-                        <p>${img.medium || 'N/A'} &bull; ${img.year || 'Unknown'}</p>
-                    </div>
-                `;
-                gridView.appendChild(card);
-            });
-        }
-
-        function launchSingleView(index) {
-            currentIndex = index;
-            workspace.classList.add('show-single');
-            backToGridBtn.style.display = 'inline-block';
-            fsBtn.style.display = 'inline-block';
-            homeHubBtn.style.display = 'none';
-            renderActiveImage();
-        }
-
-        function exitToGrid() {
-            resetZoom();
-            if (document.fullscreenElement) document.exitFullscreen();
-            renderGrid();
-        }
-
-        function renderActiveImage() {
-            resetZoom();
-            const item = filteredImages[currentIndex];
-            if (!item) return;
-
-            galleryImg.src = item.url;
-            document.getElementById('metaTitle').innerText = item.title || 'Untitled';
-            document.getElementById('metaYear').innerText = item.year || 'N/A';
-            document.getElementById('metaDimensions').innerText = item.dimensions || '';
-            document.getElementById('metaMedium').innerText = item.medium || 'N/A';
-            document.getElementById('metaTechnic').innerText = item.technic ? `(${item.technic})` : '';
-
-            const metaKeywords = document.getElementById('metaKeywords');
-            if (metaKeywords) {
-                metaKeywords.innerText = item.keywords ? `Keywords: ${item.keywords}` : '';
-            }
-        }
-
-        function navigate(direction) {
-            if (filteredImages.length <= 1) return;
-            currentIndex += direction;
-            if (currentIndex >= filteredImages.length) currentIndex = 0;
-            if (currentIndex < 0) currentIndex = filteredImages.length - 1;
-            renderActiveImage();
-        }
-
-        stage.addEventListener('wheel', (e) => {
-            if (!workspace.classList.contains('show-single')) return;
-            e.preventDefault();
-            const intensity = 0.1;
-            scale = e.deltaY < 0 ? scale + intensity : scale - intensity;
-            scale = Math.min(Math.max(1, scale), 5);
-            if (scale === 1) { pointX = 0; pointY = 0; }
-            updateTransform();
-        });
-
-        imgWrapper.addEventListener('mousedown', (e) => {
-            if (scale === 1) return;
-            e.preventDefault();
-            startX = e.clientX - pointX;
-            startY = e.clientY - pointY;
-            isPanning = true;
-        });
-
-        window.addEventListener('mousemove', (e) => {
-            if (!isPanning) return;
-            pointX = e.clientX - startX;
-            pointY = e.clientY - startY;
-            updateTransform();
-        });
-
-        window.addEventListener('mouseup', () => {
-            isPanning = false;
-        });
-
-        stage.addEventListener('touchstart', (e) => {
-            if (!workspace.classList.contains('show-single')) return;
-
-            if (e.touches.length === 2) {
-                lastTouchDist = Math.hypot(
-                    e.touches[0].clientX - e.touches[1].clientX,
-                    e.touches[0].clientY - e.touches[1].clientY
-                );
-            } else if (e.touches.length === 1) {
-                touchStartX = e.touches[0].clientX;
-                touchStartY = e.touches[0].clientY;
-
-                if (scale > 1) {
-                    startX = e.touches[0].clientX - pointX;
-                    startY = e.touches[0].clientY - pointY;
-                    isPanning = true;
-                }
-            }
-        });
-
-        stage.addEventListener('touchmove', (e) => {
-            if (!workspace.classList.contains('show-single')) return;
-
-            if (e.touches.length === 2 && scale >= 1) {
-                e.preventDefault();
-                const dist = Math.hypot(
-                    e.touches[0].clientX - e.touches[1].clientX,
-                    e.touches[0].clientY - e.touches[1].clientY
-                );
-                const factor = dist / lastTouchDist;
-                scale = Math.min(Math.max(1, scale * factor), 5);
-                lastTouchDist = dist;
-                updateTransform();
-            } else if (e.touches.length === 1 && isPanning) {
-                e.preventDefault();
-                pointX = e.touches[0].clientX - startX;
-                pointY = e.touches[0].clientY - startY;
-                updateTransform();
-            }
-        });
-
-        stage.addEventListener('touchend', (e) => {
-            if (!workspace.classList.contains('show-single')) return;
-
-            if (isPanning && e.touches.length === 0) {
-                isPanning = false;
-            }
-
-            if (scale === 1 && e.changedTouches.length === 1 && !isPanning) {
-                const diffX = e.changedTouches[0].clientX - touchStartX;
-                const diffY = e.changedTouches[0].clientY - touchStartY;
-
-                if (Math.abs(diffX) > 60 && Math.abs(diffY) < 40) {
-                    navigate(diffX > 0 ? -1 : 1);
-                }
-            }
-        });
-
-        function updateTransform() {
-            imgWrapper.style.transform = `translate(${pointX}px, ${pointY}px) scale(${scale})`;
-        }
-
-        function resetZoom() {
-            scale = 1;
-            pointX = 0;
-            pointY = 0;
-            updateTransform();
-        }
-
-        function toggleFullScreen() {
-            if (!document.fullscreenElement) {
-                document.documentElement.requestFullscreen();
-            } else {
-                document.exitFullscreen();
-            }
-        }
-
-        document.addEventListener('fullscreenchange', () => {
-            if (document.fullscreenElement) {
-                document.body.classList.add('fullscreen-mode');
-            } else {
-                document.body.classList.remove('fullscreen-mode');
-                resetZoom();
-            }
-        });
-
-        document.getElementById('imgWrapper').addEventListener('click', function() {
-            if (typeof toggleFullScreen === 'function') {
-                toggleFullScreen();
-            } else {
-                document.body.classList.toggle('fullscreen-mode');
-            }
-        });
-
-        window.addEventListener('keydown', (e) => {
-            if (!workspace.classList.contains('show-single')) return;
-            if (e.key === 'ArrowRight') navigate(1);
-            if (e.key === 'ArrowLeft') navigate(-1);
-            if (e.key === 'Escape' && !document.fullscreenElement) exitToGrid();
-        });
-
-        function titleCase(value) {
-            return value ? value.charAt(0).toUpperCase() + value.slice(1) : '';
-        }
-
-        async function updateGalleryTitle() {
-            const titleEl = document.getElementById('dynamic-gallery-title');
-            if (!titleEl) return;
-
-            const params = new URLSearchParams(window.location.search);
-            const searchQuery = params.get('search');
-
-            if (!searchQuery) {
-                titleEl.textContent = '';
-                return;
-            }
-
-            try {
-                const response = await fetch(siteConfig.galleriesUrl);
-                if (!response.ok) {
-                    throw new Error(`Could not load galleries from ${siteConfig.galleriesUrl}`);
-                }
-
-                const galleries = await response.json();
-                const normalizedSearch = searchQuery.trim().toLowerCase();
-                const currentGallery = galleries.find(g => {
-                    const criteria = (g.searchCriteria || '').trim().toLowerCase();
-                    return criteria === normalizedSearch;
-                });
-
-                titleEl.textContent = currentGallery && currentGallery.title
-                    ? `• ${currentGallery.title}`
-                    : `• ${titleCase(normalizedSearch)}`;
-            } catch (error) {
-                console.error('Error loading gallery title:', error);
-                titleEl.textContent = `• ${titleCase(searchQuery.trim())}`;
-            }
-        }
-
-        window.onload = async function() {
-            try {
-                siteConfig = await loadSiteConfig();
-                applyBranding();
-                await Promise.all([initCatalog(), updateGalleryTitle()]);
-            } catch (error) {
-                console.error('Failed to load site configuration:', error);
-                gridView.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding: 40px;">Unable to load the site configuration. Check the config URL.</div>';
-            }
-        };
-    </script>
+    function getConfigUrl() {
+      const requested = new URLSearchParams(location.search).get('config');
+      return requested ? new URL(requested, location.href).href : new URL('config.json', location.href).href;
+    }
+    function resolveDataUrl(value, fallback, configUrl) { return new URL(value || fallback, configUrl).href; }
+    // Always resolve infrastructure links from this viewer page, never from config.json.
+    function makeViewerUrl(pageName, params = {}) {
+      const url = new URL(pageName, location.href);
+      url.search = '';
+      if (siteConfig && siteConfig.configUrl) url.searchParams.set('config', siteConfig.configUrl);
+      Object.entries(params).forEach(([key, value]) => {
+        if (value !== undefined && value !== null && value !== '') url.searchParams.set(key, String(value));
+      });
+      return url.href;
+    }
+    async function loadSiteConfig() {
+      const configUrl = getConfigUrl();
+      const response = await fetch(configUrl);
+      if (!response.ok) throw new Error(`Could not load configuration from ${configUrl}`);
+      const data = await response.json();
+      return {
+        configUrl,
+        brandName: data.brandName || data.brand_name || 'Artist Portfolio',
+        logoUrl: resolveDataUrl(data.logoUrl || data.logo_url, 'logo.jpeg', configUrl),
+        galleriesUrl: resolveDataUrl(data.galleriesUrl || data.galleries_url, 'galleries.json', configUrl),
+        imagesUrl: resolveDataUrl(data.imagesUrl || data.images_url, 'images.json', configUrl)
+      };
+    }
+    function applyBranding() {
+      document.title = siteConfig.brandName;
+      document.querySelector('.brand-name').textContent = siteConfig.brandName;
+      document.getElementById('logoImg').src = siteConfig.logoUrl;
+      document.getElementById('logoLink').href = makeViewerUrl('index.html');
+      homeHubBtn.href = makeViewerUrl('index.html');
+    }
+    function getSearchQuery() { return (new URLSearchParams(location.search).get('search') || '').trim().toLowerCase(); }
+    async function initCatalog() {
+      const response = await fetch(siteConfig.imagesUrl);
+      if (!response.ok) throw new Error(`Could not load images from ${siteConfig.imagesUrl}`);
+      allImages = await response.json();
+      allImages.forEach(image => { if (image.url) image.url = new URL(image.url, siteConfig.imagesUrl).href; });
+      const query = getSearchQuery();
+      filteredImages = query ? allImages.filter(image => [image.title,image.keywords,image.medium].some(value => (value || '').toLowerCase().includes(query))) : [...allImages];
+      renderGrid();
+    }
+    function renderGrid() {
+      workspace.classList.remove('show-single');
+      backToGridBtn.style.display = 'none'; fsBtn.style.display = 'none'; homeHubBtn.style.display = '';
+      gridView.replaceChildren();
+      if (!filteredImages.length) { gridView.textContent = 'No matching artworks found.'; return; }
+      filteredImages.forEach((image,index) => {
+        const card = document.createElement('article'); card.className = 'preview-card'; card.onclick = () => launchSingleView(index);
+        const frame = document.createElement('div'); frame.className = 'preview-frame';
+        const img = document.createElement('img'); img.src = image.url; img.alt = image.title || 'Artwork'; frame.appendChild(img);
+        const info = document.createElement('div'); info.className = 'preview-info';
+        const title = document.createElement('h3'); title.textContent = image.title || 'Untitled';
+        const details = document.createElement('p'); details.textContent = `${image.medium || 'N/A'} • ${image.year || 'Unknown'}`;
+        info.append(title,details); card.append(frame,info); gridView.appendChild(card);
+      });
+    }
+    function launchSingleView(index) { currentIndex = index; workspace.classList.add('show-single'); backToGridBtn.style.display = ''; fsBtn.style.display = ''; homeHubBtn.style.display = 'none'; renderActiveImage(); }
+    function exitToGrid() { resetZoom(); if (document.fullscreenElement) document.exitFullscreen(); renderGrid(); }
+    function renderActiveImage() {
+      resetZoom(); const item = filteredImages[currentIndex]; if (!item) return;
+      galleryImg.src = item.url;
+      document.getElementById('metaTitle').textContent = item.title || 'Untitled';
+      document.getElementById('metaDetails').textContent = [item.medium,item.technic,item.dimensions,item.year].filter(Boolean).join(' • ');
+      document.getElementById('metaKeywords').textContent = item.keywords ? `Keywords: ${item.keywords}` : '';
+    }
+    function navigate(direction) { if (!filteredImages.length) return; currentIndex = (currentIndex + direction + filteredImages.length) % filteredImages.length; renderActiveImage(); }
+    function updateTransform() { imgWrapper.style.transform = `translate(${pointX}px,${pointY}px) scale(${scale})`; }
+    function resetZoom() { scale = 1; pointX = 0; pointY = 0; updateTransform(); }
+    stage.addEventListener('wheel', event => { if (!workspace.classList.contains('show-single')) return; event.preventDefault(); scale = Math.min(5,Math.max(1,scale + (event.deltaY < 0 ? .1 : -.1))); if (scale === 1) { pointX = 0; pointY = 0; } updateTransform(); }, { passive:false });
+    imgWrapper.addEventListener('mousedown', event => { if (scale === 1) return; event.preventDefault(); startX = event.clientX-pointX; startY = event.clientY-pointY; isPanning = true; });
+    window.addEventListener('mousemove', event => { if (!isPanning) return; pointX = event.clientX-startX; pointY = event.clientY-startY; updateTransform(); });
+    window.addEventListener('mouseup', () => { isPanning = false; });
+    stage.addEventListener('touchstart', event => {
+      if (event.touches.length === 2) lastTouchDist = Math.hypot(event.touches[0].clientX-event.touches[1].clientX,event.touches[0].clientY-event.touches[1].clientY);
+      else if (event.touches.length === 1) { touchStartX = event.touches[0].clientX; touchStartY = event.touches[0].clientY; if (scale > 1) { startX = touchStartX-pointX; startY = touchStartY-pointY; isPanning = true; } }
+    });
+    stage.addEventListener('touchmove', event => {
+      if (event.touches.length === 2) { event.preventDefault(); const dist = Math.hypot(event.touches[0].clientX-event.touches[1].clientX,event.touches[0].clientY-event.touches[1].clientY); if (lastTouchDist) scale = Math.min(5,Math.max(1,scale*dist/lastTouchDist)); lastTouchDist = dist; updateTransform(); }
+      else if (event.touches.length === 1 && isPanning) { event.preventDefault(); pointX = event.touches[0].clientX-startX; pointY = event.touches[0].clientY-startY; updateTransform(); }
+    }, { passive:false });
+    stage.addEventListener('touchend', event => {
+      if (!event.touches.length && isPanning) isPanning = false;
+      if (scale === 1 && event.changedTouches.length === 1) { const dx = event.changedTouches[0].clientX-touchStartX; const dy = event.changedTouches[0].clientY-touchStartY; if (Math.abs(dx)>60 && Math.abs(dy)<40) navigate(dx>0?-1:1); }
+    });
+    function toggleFullScreen() { if (!document.fullscreenElement) document.documentElement.requestFullscreen?.(); else document.exitFullscreen?.(); }
+    document.addEventListener('fullscreenchange', () => { document.body.classList.toggle('fullscreen-mode', Boolean(document.fullscreenElement)); if (!document.fullscreenElement) resetZoom(); });
+    imgWrapper.addEventListener('click', toggleFullScreen);
+    window.addEventListener('keydown', event => { if (!workspace.classList.contains('show-single')) return; if (event.key === 'ArrowRight') navigate(1); if (event.key === 'ArrowLeft') navigate(-1); if (event.key === 'Escape' && !document.fullscreenElement) exitToGrid(); });
+    async function loadGalleryTitle() {
+      const query = getSearchQuery(); if (!query) return;
+      const titleEl = document.getElementById('galleryTitle');
+      try { const response = await fetch(siteConfig.galleriesUrl); if (!response.ok) throw new Error('Could not load galleries'); const galleries = await response.json(); const current = galleries.find(item => (item.searchCriteria || '').trim().toLowerCase() === query); titleEl.textContent = `• ${current?.title || query.charAt(0).toUpperCase()+query.slice(1)}`; }
+      catch (error) { console.error(error); titleEl.textContent = `• ${query}`; }
+    }
+    window.addEventListener('load', async () => {
+      try { siteConfig = await loadSiteConfig(); applyBranding(); await Promise.all([initCatalog(),loadGalleryTitle()]); }
+      catch (error) { console.error(error); gridView.textContent = 'Unable to load configuration or artwork data. Check the config URL.'; }
+    });
+  </script>
 </body>
 </html>
